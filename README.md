@@ -51,4 +51,4 @@ The clock face should be varied and a calendar should be linked. Several dashboa
 With 'Agile Cockpit' this vision has come true ... and for me a little dream. I am happy if you like the watchface and it helps you in everyday life.
 
 <br>You can support me on Patreon<br>
-<a href="https://www.patreon.com/bePatron?u=37032853" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+https://www.patreon.com/sesio
