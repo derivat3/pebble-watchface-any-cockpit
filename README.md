@@ -22,6 +22,12 @@ And if it has to go fast, the random clock face generator will help you in this 
 1. Memory slots for 10 custom clock faces
 1. Configurable random generator
 
+## Supported Pebbles
+- ~~Classic, Steel~~
+- Time, Time Steel
+- Time Round
+- Pebble 2
+
 # How to Setup Google Calendar Credentials
 
 ## Create public Google Calendar
