@@ -1,6 +1,6 @@
 ![header](assets/header_1000_250.jpg)
 
-# Agile Cockpit v1.0
+# Agile Cockpit
 
 Highly configurable analog watchface, which solves the problem of scheduling in daily business. 
 With a connected Google Calendar, you will see upcoming appointments directly on your wrist and, if you wish, you will be notified on time.
@@ -10,6 +10,8 @@ And because the possibilities of your customized watchface increased so much, it
 
 And ... even without a linked calendar or smart dashboards, the clock is just fun. You can create and save up to ten personal clock faces. 
 And if it has to go fast, the random clock face generator will help you in this case!
+
+[Change Log](CHANGELOG.md)
 
 ## Benefits
 1. Highly configurable watchface
