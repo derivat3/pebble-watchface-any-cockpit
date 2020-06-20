@@ -50,5 +50,5 @@ The clock face should be varied and a calendar should be linked. Several dashboa
 
 With 'Agile Cockpit' this vision has come true ... and for me a little dream. I am happy if you like the watchface and it helps you in everyday life.
 
-<br><br><br>
-<center><span style='background-color: #E35945; xline-height: 20px; xvertical-align:bottom; color: #ffffff; border-radius: 100px; padding: 10px 20px;'><a style='color: #ffffff; text-decoration:none;'href='https://www.patreon.com/sesio'><img style='vertical-align:middle;' height='24' src='data:image/gif;base64,R0lGODlhPAA5APEAAAAAAP///yZFySZFySH5BAEAAAIALAAAAAA8ADkAAALYjI+iy+0PY0M0yCtqxUwf7niihY1gN5qSCqYuCbHl+8ZiS9OPHOV+eLv4hpNgb/hDeVZI4oJXbCYzRqB0Cn1enVnqNtn9cqtKsS5rJqLTOa9mxz6TFXH50lo3rfP6uZv/tgcY6Dd4E2a4gZiYsMhI4shI5zcpWflmY/lHwWRYttEJ+MkZmheFWcqGBypUB3c3k5aJGvt1BItzlZpwouW0+9E7ittKLHzJ29t1zHzK2gy9ShpN7UtbHb2MrUy5zW3sLawdXvtMLt59XnytnsveXj4N724+f1EAADs='/><span style='position: relative; bottom:0px;'>&nbsp;&nbsp;&nbsp;You can support me on Patreon</span></a></span><br><br><span style='font-size:14px;'>https://www.patreon.com/sesio</span></center>
+<br>You can support me on Patreon<br>
+<a href="https://www.patreon.com/bePatron?u=37032853" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
