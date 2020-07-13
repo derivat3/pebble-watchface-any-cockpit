@@ -1,8 +1,5 @@
-![header](assets/header_1000_250.jpg)
+![header](../assets/header_1000_250.jpg)
 
-<ing src="../assets/header_1000_250.jpg">
-  
-<ing src="../../assets/header_1000_250.jpg">
 
 # Agile Cockpit
 
