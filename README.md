@@ -1,6 +1,6 @@
 ![header](assets/header_1000_250.jpg)
 
-# Agile Cockpit [download](https://github.com/derivat3/pebble-watchface-agile-cockpit/releases/download/v1.0/watch-face-agile-cockpit_v1-0.pbw)
+# Agile Cockpit
 
 Highly configurable analog watchface, which solves the problem of scheduling in daily business. 
 With a connected Google Calendar, you will see upcoming appointments directly on your wrist and, if you wish, you will be notified on time.
@@ -11,7 +11,14 @@ And because the possibilities of your customized watchface increased so much, it
 And ... even without a linked calendar or smart dashboards, the clock is just fun. You can create and save up to ten personal clock faces. 
 And if it has to go fast, the random clock face generator will help you in this case!
 
+
+[Download Latest](https://github.com/derivat3/pebble-watchface-agile-cockpit/releases/download/v1.0/watch-face-agile-cockpit_v1-0.pbw)
+
 [Change Log](CHANGELOG.md)
+
+[GitHub Page](https://derivat3.github.io/pebble-watchface-agile-cockpit/)
+
+[Themes/Samples/Presets](https://derivat3.github.io/pebble-watchface-agile-cockpit/themes/)
 
 ## Benefits
 1. Highly configurable watchface
