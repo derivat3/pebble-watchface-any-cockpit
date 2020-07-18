@@ -1,0 +1,87 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+// Mixin itself
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+.ac-page-header {
+  // background-image: url(../img/header.png);
+  // height: 350px;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  background-color: #222;
+  text-align: center;
+  font-size: 0;
+}
+
+.ac-nav-icon {
+  float: left;
+  height: 22px;
+}
+
+@media screen and (min-width: 64em) {
+  .ac-nav-icon {
+    height: 26px;
+  }
+}
+
+.btn.ac-btn-small {
+  padding: 0.5rem;
+}
+
+.ac-nav-wrapper {
+  position: sticky;
+  top: 0;
+  background-color: #333;
+  .ac-nav-content {
+    padding-top: 0;
+    padding-bottom: 0;
+    @include clearfix;
+    .ac-btn-nav {
+      text-decoration: none;
+      float: left;
+      color: #fff;
+      padding: 1rem;
+      display: block;
+      background-color: #333;
+      border-top: 0;
+      border-bottom: 0;
+      border-right: 0;
+      margin: 0;
+      border-radius: 0;
+    }
+    a:hover {
+      background-color: #222;
+    }
+    .ac-btn-small {
+      margin-top: 0.4rem;
+    }
+    .btn {
+      width: auto !important;
+      margin-bottom: 0;
+    }
+    .btn + .btn {
+      // margin-left: 10px;
+    }
+  }
+}
+
+.ac-theme-item {
+  float: left;
+  width: 200px;
+  padding-right: 20px;
+}
+
+
