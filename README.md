@@ -1,6 +1,6 @@
 ![header](assets/header_1000_250.jpg)
 
-# Agile Cockpit
+# Agile Cockpit [download](https://github.com/derivat3/pebble-watchface-agile-cockpit/releases/download/v1.0/watch-face-agile-cockpit_v1-0.pbw)
 
 Highly configurable analog watchface, which solves the problem of scheduling in daily business. 
 With a connected Google Calendar, you will see upcoming appointments directly on your wrist and, if you wish, you will be notified on time.
