@@ -68,6 +68,11 @@
     .ac-btn-small {
       margin-top: 0.4rem;
     }
+    .ac-btn-nav-right {
+      float:right;
+      margin-left: 0;
+      margin-right: 10px;
+    }
     .btn {
       width: auto !important;
       margin-bottom: 0;
@@ -78,10 +83,21 @@
   }
 }
 
+@media screen and (max-width: 42em) {
+  .ac-nav-wrapper .ac-nav-content {
+    padding: 0;
+  }
+  .ac-nav-wrapper .ac-nav-content .ac-btn-nav {
+    padding: 1rem 0.5rem;
+  }
+}
+
 .ac-theme-item {
   float: left;
-  width: 200px;
-  padding-right: 20px;
+  width: 164px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 20px;
 }
 
 
