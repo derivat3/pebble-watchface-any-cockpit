@@ -18,7 +18,7 @@ And if it has to go fast, the random clock face generator will help you in this 
 
 [GitHub Page](https://derivat3.github.io/pebble-watchface-agile-cockpit/)
 
-[Themes/Samples/Presets](https://derivat3.github.io/pebble-watchface-agile-cockpit/themes/)
+[Themes and Samples](https://derivat3.github.io/pebble-watchface-agile-cockpit/themes/)
 
 ## Benefits
 1. Highly configurable watchface
