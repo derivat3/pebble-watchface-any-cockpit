@@ -10,7 +10,7 @@ And ... even without a linked calendar or smart dashboards, the clock is just fu
 And if it has to go fast, the random clock face generator will help you in this case!
 
 
-## Find yours in the __Themes__ section 
+## Find yours in the __Themes__ Section 
 <a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V01_final.svg" alt="v01" width="100"/></a>
 <a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V02_final.svg" alt="v02" width="100"/></a> ...
 
@@ -25,6 +25,7 @@ And if it has to go fast, the random clock face generator will help you in this 
 1. 10 clock face presets
 1. Memory slots for 10 custom clock faces
 1. Configurable random generator
+1. Embedded Themes Page for many new designs
 
 ## Supported Pebbles
 - ~~Classic, Steel~~
