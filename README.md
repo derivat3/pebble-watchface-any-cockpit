@@ -12,7 +12,7 @@ And ... even without a linked calendar or smart dashboards, the clock is just fu
 And if it has to go fast, the random clock face generator will help you in this case!
 
 
-[Download Latest](https://github.com/derivat3/pebble-watchface-agile-cockpit/releases/download/v1.1/watch-face-agile-cockpit_v1-1.pbw)
+[Download Latest](https://github.com/derivat3/pebble-watchface-agile-cockpit/releases/download/v1.2/watch-face-agile-cockpit_v1-2.pbw)
 
 [Changelog](CHANGELOG.md)
 
