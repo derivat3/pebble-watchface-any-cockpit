@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2 - 2020-08-16
+**Improvement and Bugfix**
+- Introduced Themes Page for many new designs
+- Add minimized settings menu for older Phones
+- Fix broken Random Generator
+
 ## v1.1 - 2020-07-19
 **Improvement and Bugfix**
 - Update the customVar settings to handle a conditional OR operator inside each response selector.
