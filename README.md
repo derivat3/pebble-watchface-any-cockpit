@@ -30,6 +30,7 @@ And if it has to go fast, the random clock face generator will help you in this 
 1. 10 clock face presets
 1. Memory slots for 10 custom clock faces
 1. Configurable random generator
+1. Embedded Themes Page for many new designs
 
 ## Supported Pebbles
 - ~~Classic, Steel~~
