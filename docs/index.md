@@ -12,7 +12,7 @@ And if it has to go fast, the random clock face generator will help you in this 
 
 ## Find yours in the __Themes__ Section 
 <a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V01_final.svg" alt="v01" width="100"/></a>
-<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V02_final.svg" alt="v02" width="100"/></a> ...
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V02_final.svg" alt="v02" width="100"/></a>  •••
 
 
 ## Benefits
