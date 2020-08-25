@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.3 - 2020-08-26
+**Improvement and Bugfix**
+- Fix crash indicator for the minimized settings menu
+- Fix variation toggle of the minimized settings menu
+
 ## v1.2 - 2020-08-16
 **Improvement and Bugfix**
 - Introduced Themes Page for many new designs
