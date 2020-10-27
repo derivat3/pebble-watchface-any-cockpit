@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.0 - 2020-10-25
+**Improvement and Bugfix**
+- New notification style for rectangular pebbles
+- Add crash report to notify about small settings menu
+- Renamed watchface
+- Fix some bugs
+
 ## v1.3 - 2020-08-26
 **Improvement and Bugfix**
 - Fix crash indicator for the minimized settings menu
