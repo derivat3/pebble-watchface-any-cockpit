@@ -12,13 +12,13 @@ And ... even without a linked calendar or smart dashboards, the clock is just fu
 And if it has to go fast, the random clock face generator will help you in this case!
 
 
-[Download Latest](https://github.com/derivat3/pebble-watchface-any-cockpit/releases/download/v1.3/watch-face-any-cockpit_v1-3.pbw)
-
-[Changelog](CHANGELOG.md)
-
 [GitHub Page](https://derivat3.github.io/pebble-watchface-any-cockpit/)
 
 [Themes and Samples](https://derivat3.github.io/pebble-watchface-any-cockpit/themes/)
+
+[Download Latest](https://github.com/derivat3/pebble-watchface-any-cockpit/releases/download/v1.3/watch-face-any-cockpit_v2-0.pbw)
+
+[Changelog](CHANGELOG.md)
 
 ## Benefits
 1. Highly configurable watchface
