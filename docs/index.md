@@ -1,9 +1,9 @@
-# __Agile Cockpit__ for Pebble Smartwatch
+# __Any Cockpit__ for Pebble Smartwatch
 
 Highly configurable analog watchface, which solves the problem of scheduling in daily business. 
 With a connected Google Calendar, you will see upcoming appointments directly on your wrist and, if you wish, you will be notified on time.
 
-With the Agile Cockpit you get the possibility to fetch data via GET Requests and display them as dashboard elements on your watchface.
+With __Any Cockpit__ you get the possibility to fetch data via GET Requests and display them as dashboard elements on your watchface.
 And because the possibilities of your customized watchface increased so much, it also offer a way to backup and restore your watchface settings.
 
 And ... even without a linked calendar or smart dashboards, the clock is just fun. You can create and save up to ten personal clock faces. 
@@ -42,7 +42,7 @@ For a long time I had the vision of a flexible watch face that can be adapted to
 Many ideas had to be bundled in one watchface.
 The clock face should be varied and a calendar should be linked. Several dashboards should be able to be customized and public APIs should be addressable. There should be an import / export function and the watchface should get by without an external server or companion app.
 
-With 'Agile Cockpit' this vision has come true ... and for me a little dream. I am happy if you like the watchface and it helps you in everyday life.
+With __Any Cockpit__ this vision has come true ... and for me a little dream. I am happy if you like the watchface and it helps you in everyday life.
 
 <br>You can support me on Patreon<br>
-https://www.patreon.com/sesio
+[www.patreon.com/sesio](https://www.patreon.com/sesio)
