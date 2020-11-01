@@ -45,6 +45,7 @@
   position: sticky;
   top: 0;
   background-color: #333;
+  box-shadow: 0 -1px 0 0 #333; // flicker bug
   .ac-nav-content {
     padding-top: 0;
     padding-bottom: 0;
@@ -100,4 +101,63 @@
   padding-bottom: 20px;
 }
 
+/*********************/
+/** details element **/
+details {
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+details[open] {
+  background-color: #fdfdfd;
+  box-shadow: inset 0 0 0 2px #f9f9f9;
+}
+details:not([open]) summary:hover {
+  transition: box-shadow .15s;
+  box-shadow: 2px 2px 5px 1px rgba(0,0,0,.3);
+}
+details summary {
+  transition: box-shadow .15s;
+  display: list-item;
+  background-color: #2e9b49;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+details[open] summary {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+details article {
+  padding: 20px;
+}
+/** details element **/
+/*********************/
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  & > *:not(:first-child) {
+    padding-left: 10px;
+  }
+}
+
+.text-info {
+  color: #31708f;
+}
+
+.info-component {
+  @extend .text-info;
+  position: relative;
+  padding-left: 30px;
+  &:before {
+    position: absolute;
+    left: 0;
+    content: "ℹ️";
+  }
+}
+
+:not(li) > ul > li {
+  margin-bottom: 20px;
+}
