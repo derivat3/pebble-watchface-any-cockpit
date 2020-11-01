@@ -11,8 +11,13 @@ And if it has to go fast, the random clock face generator will help you in this 
 
 
 ## Find yours in the __Themes__ Section 
-<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V01_final.svg" alt="v01" width="100"/></a>
-<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V02_final.svg" alt="v02" width="100"/></a>  •••
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V00_preset_01_co_rnd.svg" alt="v00_01" width="100"/></a>
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V00_preset_02_co_rnd.svg" alt="v00_02" width="100"/></a>
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V00_preset_06_co_rnd.svg" alt="v00_06" width="100"/></a>
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V00_preset_07_co_rnd.svg" alt="v00_07" width="100"/></a>
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V00_preset_08_co_rnd.svg" alt="v00_08" width="100"/></a>
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V01_final_co_rnd.svg" alt="v01" width="100"/></a>
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V02_final_co_rnd.svg" alt="v02" width="100"/></a>  •••
 
 
 ## Benefits

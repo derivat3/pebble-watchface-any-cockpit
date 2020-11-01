@@ -101,18 +101,24 @@
     transition: box-shadow .15s;
     box-shadow: 2px 2px 5px 1px rgba(0,0,0,.3);
     border: 2px solid white;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 }
 
 .ac-theme-item {
   @extend .ac-trs-shadow-border-scale;
   float: left;
-  width: 164px;
+  width: 156px;
   margin-right: 5px;
   margin-left: 5px;
   font-size: 0;
   border-radius: 8px;
+}
+
+@media screen and (max-width: 42em) {
+  .ac-theme-item {
+    width: 164px;
+  }
 }
 
 /*********************/
