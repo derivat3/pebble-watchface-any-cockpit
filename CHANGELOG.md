@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1 - 2020-11-03
+**Improvement and Bugfix**
+- Introduced the dashboard type: State
+- Enabled the dashboard types: Chart
+- Fix the dashboard alerts: Value, Star and Flash
+
 ## v2.0 - 2020-10-25
 **Improvement and Bugfix**
 - New notification style for rectangular pebbles

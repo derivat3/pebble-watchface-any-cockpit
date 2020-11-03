@@ -16,7 +16,7 @@ And if it has to go fast, the random clock face generator will help you in this 
 
 [Themes and Samples](https://derivat3.github.io/pebble-watchface-any-cockpit/themes/)
 
-[Download Latest](https://github.com/derivat3/pebble-watchface-any-cockpit/releases/download/v2.0/watch-face-any-cockpit_v2-0.pbw)
+[Download Latest](https://github.com/derivat3/pebble-watchface-any-cockpit/releases/download/v2.1/watch-face-any-cockpit_v2-1.pbw)
 
 [Changelog](CHANGELOG.md)
 
