@@ -66,5 +66,6 @@ The clock face should be varied and a calendar should be linked. Several dashboa
 
 With __Any Cockpit__ this vision has come true ... and for me a little dream. I am happy if you like the watchface and it helps you in everyday life.
 
-<br>You can support me on Patreon<br>
-https://www.patreon.com/sesio
+<br>You can support me here:<br>
+https://www.patreon.com/sesio  
+https://ko-fi.com/sesio
