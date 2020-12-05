@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.2 - 2020-12-05
+**Improvement and Bugfix**
+- Optimized the XHR result handling for usability
+- Fix missing screenshots
+- Other bug fixes
+
 ## v2.1 - 2020-11-03
 **Improvement and Bugfix**
 - Introduced the dashboard type: State
