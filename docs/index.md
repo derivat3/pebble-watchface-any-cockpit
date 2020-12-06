@@ -16,8 +16,8 @@ And if it has to go fast, the random clock face generator will help you in this 
 <a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V00_preset_06_co_rnd.svg" alt="v00_06" width="100"/></a>
 <a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V00_preset_07_co_rnd.svg" alt="v00_07" width="100"/></a>
 <a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V00_preset_08_co_rnd.svg" alt="v00_08" width="100"/></a>
-<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V01_final_co_rnd.svg" alt="v01" width="100"/></a>
-<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V02_final_co_rnd.svg" alt="v02" width="100"/></a>  •••
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V01_theme_co_rnd.svg" alt="v01" width="100"/></a>
+<a href="{{site.baseurl}}/themes"><img src="assets/img/themes/V02_theme_co_rnd.svg" alt="v02" width="100"/></a>  •••
 
 
 ## Benefits
