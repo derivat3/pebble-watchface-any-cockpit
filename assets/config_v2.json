@@ -9,13 +9,10 @@
     "id": "SectionHeader",
     "defaultValue": ""
   },
-
   {
     "type": "text",
     "defaultValue": "<a href=\"https://derivat3.github.io/pebble-watchface-any-cockpit/themes/list\" style=\"box-shadow: 5px 5px 10px 0 rgba(0,0,0,.4); display: block; font-weight: bold; text-align: center; text-decoration: none; font-size: 18px; font-weight: normal; background-color: transparent; border: 1px solid #41EA15; color: #41EA15; border-radius: 4px; padding: 10px 20px;\">Check out the new Themes Page!</a>"
   },
-
-  // TODO: VARIATIONS
   {
     "type": "section",
     "items": [
@@ -72,8 +69,6 @@
     "type": "text",
     "defaultValue": "<br>"
   },
-
-  // TODO: CLOCK-FACE
   {
     "type": "section",
     "items": [
@@ -420,7 +415,6 @@
       }
     ]
   },
-  // TODO: .    MINUTE STROKES
   {
     "type": "section",
     "items": [
@@ -476,7 +470,6 @@
       }
     ]
   },
-  // TODO: .    HOUR STROKES
   {
     "type": "section",
     "items": [
@@ -532,7 +525,6 @@
       }
     ]
   },
-  // TODO: .    CARDINAL STROKES
   {
     "type": "section",
     "items": [
@@ -593,8 +585,6 @@
     "id": "SectionClockFace_8",
     "defaultValue": "<br>"
   },
-
-  // TODO: CLOCK-HANDS
   {
     "type": "section",
     "items": [
@@ -612,7 +602,6 @@
       }
     ]
   },
-  // TODO: .    HOUR
   {
     "type": "section",
     "items": [
@@ -657,7 +646,6 @@
       }
     ]
   },
-  // TODO: .    MINUTE
   {
     "type": "section",
     "items": [
@@ -702,7 +690,6 @@
       }
     ]
   },
-  // TODO: .    SECOND
   {
     "type": "section",
     "items": [
@@ -752,8 +739,6 @@
     "id": "SectionClockHands_5",
     "defaultValue": "<br>"
   },
-
-  // TODO: CALENDAR
   {
     "type": "section",
     "items": [
@@ -778,7 +763,6 @@
       }
     ]
   },
-  // TODO: .    CREDENTIALS
   {
     "type": "section",
     "items": [
@@ -823,7 +807,6 @@
       }
     ]
   },
-  // TODO: .    STYLING
   {
     "type": "section",
     "items": [
@@ -882,7 +865,6 @@
       }
     ]
   },
-  // TODO: .    ALERTS
   {
     "type": "section",
     "items": [
@@ -1005,7 +987,7 @@
         "messageKey": "NotificationPulse",
         "label": "Counter Vibration",
         "defaultValue": false
-      },   
+      },
       {
         "id": "SectionCalendar_5Hide",
         "type": "heading",
@@ -1018,8 +1000,6 @@
     "id": "SectionCalendar_6",
     "defaultValue": "<br>"
   },
-
-  // TODO: SHAKE EVENTS
   {
     "type": "section",
     "items": [
@@ -1027,7 +1007,7 @@
         "type": "heading",
         "id": "SectionShakeEvents",
         "defaultValue": "<h2><img width=\"25\" height=\"25\" src='data:image/png;base64,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' /> Shake Events</h2>"
-      },      
+      },
       {
         "type": "radiogroup",
         "id": "SectionShakeEvents_1",
@@ -1087,8 +1067,6 @@
     "id": "SectionShakeEvents_4",
     "defaultValue": "<br>"
   },
-
-  // TODO: CUSTOM VALUES
   {
     "type": "section",
     "items": [
@@ -1110,7 +1088,7 @@
       },
       {
         "type": "toggle",
-        "id": "SectionCustomVar_1", // CustomVarDisabled
+        "id": "SectionCustomVar_1",
         "label": "Disabled",
         "description": "Will also be set on Errors",
         "defaultValue": false
@@ -1121,7 +1099,7 @@
         "defaultValue": "Custom Value 1"
       },
       {
-        "id": "SectionCustomVar_3", // CustomVarSlot
+        "id": "SectionCustomVar_3",
         "type": "slider",
         "defaultValue": 1,
         "label": "",
@@ -1132,7 +1110,6 @@
       }
     ]
   },
-  // TODO: .    STATIC VARIABLES
   {
     "type": "section",
     "items": [
@@ -1158,7 +1135,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_4_4", // CustomVarVariableS1
+        "id": "SectionCustomVar_4_4",
         "defaultValue": "",
         "label": " ",
         "attributes": {
@@ -1173,7 +1150,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_4_6", // CustomVarVariableS2
+        "id": "SectionCustomVar_4_6",
         "defaultValue": "",
         "label": " ",
         "attributes": {
@@ -1188,7 +1165,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_4_8", // CustomVarVariableS3
+        "id": "SectionCustomVar_4_8",
         "defaultValue": "",
         "label": " ",
         "attributes": {
@@ -1203,7 +1180,6 @@
       }
     ]
   },
-  // TODO: .    REQUEST SETTINGS
   {
     "type": "section",
     "items": [
@@ -1214,7 +1190,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_5_1", // CustomVarUrl
+        "id": "SectionCustomVar_5_1",
         "defaultValue": "",
         "label": "Request GET-Url / Source",
         "description": "Optional with placeholders: _cV6_, _cV2S1_ ...",
@@ -1225,7 +1201,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_5_2", // CustomVarHeaderKey
+        "id": "SectionCustomVar_5_2",
         "defaultValue": "",
         "label": "Header Key",
         "attributes": {
@@ -1236,7 +1212,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_5_3", // CustomVarHeaderValue
+        "id": "SectionCustomVar_5_3",
         "defaultValue": "",
         "label": "Header Value",
         "attributes": {
@@ -1246,7 +1222,7 @@
       },
       {
         "type": "slider",
-        "id": "SectionCustomVar_5_4", // CustomVarInterval
+        "id": "SectionCustomVar_5_4",
         "defaultValue": 60,
         "label": "Request Interval (min)",
         "description": "(0 will interpreted as 1)",
@@ -1261,7 +1237,6 @@
       }
     ]
   },
-  // TODO: .    RESPONSE VARIABLES
   {
     "type": "section",
     "items": [
@@ -1277,7 +1252,7 @@
       },
       {
         "type": "select",
-        "id": "SectionCustomVar_6_2", // CustomVarSelectorType
+        "id": "SectionCustomVar_6_2",
         "description": "",
         "defaultValue": "get",
         "label": "Selector Type",
@@ -1304,7 +1279,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_6_5", // CustomVarSelectorR1
+        "id": "SectionCustomVar_6_5",
         "defaultValue": "",
         "label": " ",
         "attributes": {
@@ -1320,7 +1295,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_6_7", // CustomVarSelectorR2
+        "id": "SectionCustomVar_6_7",
         "defaultValue": "",
         "label": " ",
         "attributes": {
@@ -1336,7 +1311,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_6_9", // CustomVarSelectorR3
+        "id": "SectionCustomVar_6_9",
         "defaultValue": "",
         "label": " ",
         "attributes": {
@@ -1352,7 +1327,6 @@
       }
     ]
   },
-  // TODO: .    CUSTOM VALUE
   {
     "type": "section",
     "items": [
@@ -1368,7 +1342,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_7_2", // CustomVarValue
+        "id": "SectionCustomVar_7_2",
         "description": "Max. 200 chars with placeholders: _cV6_, _cV2S1_ ... + Exlusiv for this field: use _br_ vor line breaks!",
         "defaultValue": "",
         "label": " ",
@@ -1380,7 +1354,7 @@
       },
       {
         "type": "input",
-        "id": "SectionCustomVar_7_3", // CustomVarLabel
+        "id": "SectionCustomVar_7_3",
         "description": "Max. 10 chars with placeholders: _cV6_, _cV2S1_ ...",
         "defaultValue": "",
         "label": "Label",
@@ -1397,7 +1371,6 @@
       }
     ]
   },
-  // TODO: .    VALUE TUNING
   {
     "type": "section",
     "items": [
@@ -1408,7 +1381,7 @@
       },
       {
         "type": "slider",
-        "id": "SectionCustomVar_8_1", // CustomVarBase
+        "id": "SectionCustomVar_8_1",
         "defaultValue": 100,
         "label": "Base (max. Value)",
         "description": "",
@@ -1418,7 +1391,7 @@
       },
       {
         "type": "select",
-        "id": "SectionCustomVar_8_2", // CustomVarFixOperator
+        "id": "SectionCustomVar_8_2",
         "defaultValue": "none",
         "label": "Value Fix: Operator",
         "description": "x = value operator variable -> (x = value * 100)",
@@ -1447,7 +1420,7 @@
       },
       {
         "type": "slider",
-        "id": "SectionCustomVar_8_3", // CustomVarFixVariable
+        "id": "SectionCustomVar_8_3",
         "defaultValue": 100,
         "label": "Value Fix: Variable",
         "description": "x = value operator variable -> (x = value * 100)",
@@ -1457,7 +1430,7 @@
       },
       {
         "type": "slider",
-        "id": "SectionCustomVar_8_4", // CustomVarAlarmBefore
+        "id": "SectionCustomVar_8_4",
         "defaultValue": -1000,
         "label": "Alarm Before ...",
         "description": "",
@@ -1467,7 +1440,7 @@
       },
       {
         "type": "slider",
-        "id": "SectionCustomVar_8_5", // CustomVarAlarmAfter
+        "id": "SectionCustomVar_8_5",
         "defaultValue": 1000,
         "label": "Alarm After ...",
         "description": "",
@@ -1487,8 +1460,6 @@
     "id": "SectionCustomVar_9",
     "defaultValue": "<br>"
   },
-
-  // TODO: DASHBOARDS
   {
     "type": "section",
     "items": [
@@ -1499,7 +1470,6 @@
       }
     ]
   },
-  // TODO: .    DASHBOARD 1
   {
     "type": "section",
     "items": [
@@ -1895,7 +1865,6 @@
       }
     ]
   },
-  // TODO: .    DASHBOARD 2
   {
     "type": "section",
     "items": [
@@ -2291,7 +2260,6 @@
       }
     ]
   },
-  // TODO: .    DASHBOARD 3
   {
     "type": "section",
     "items": [
@@ -2687,7 +2655,6 @@
       }
     ]
   },
-  // TODO: .    DASHBOARD 4
   {
     "type": "section",
     "items": [
@@ -3088,8 +3055,6 @@
     "id": "SectionDashboard_5",
     "defaultValue": "<br>"
   },
-
-  // TODO: RANDOM GENERATOR
   {
     "type": "section",
     "items": [
@@ -3178,7 +3143,6 @@
     "id": "SectionRandom_9",
     "defaultValue": "<br>"
   },
-  // TODO: BACKUP
   {
     "type": "section",
     "items": [
@@ -3224,7 +3188,6 @@
       }
     ]
   },
-  // TODO: .    BACKUP EXPORT
   {
     "type": "section",
     "items": [
@@ -3295,7 +3258,6 @@
       }
     ]
   },
-  // TODO: .    BACKUP IMPORT
   {
     "type": "section",
     "items": [
@@ -3343,24 +3305,14 @@
     "type": "text",
     "defaultValue": "<br><br><br>"
   },
-
-  // Ko-fi
   {
     "type": "text",
     "defaultValue": "<center><span style='background-color: #00B9FE; xline-height: 20px; xvertical-align:bottom; color: #ffffff; border-radius: 100px; padding: 10px 20px 10px 15px;'><a style='color: #ffffff; text-decoration:none;'href='https://ko-fi.com/sesio'><img style='vertical-align:middle;' height='24' src='data:image/gif;base64,R0lGODlhPAAnAPcAAHt7e1JSUiIiInd3dxISEjAwMFdXVwMDAwsLC2pqavX19aWlpYyMjF5eXg8PD5KSkj09PX9/fyUlJWhoaPb29vv7+6CgoDg4OHNzc9HR0TQ0NGNjY/n5+WdnZ/39/SoqKnV1dZmZmb+/v+Xl5bq6uiYmJggICBEREfDw8FlZWSEhIevr69vb28rKytfX12xsbFVVVQwMDIuLi2RkZBkZGTY2NpycnBoaGpqamnl5eU9PTwcHB0hISDMzM+Hh4S8vL2VLTMdkZ9ljZ+lhZrljZlRCQwUFBSkpKenp6bGxsScjI3FxceFiZh8dHSAdHeJiZ9djaIeHhxQUFP///46OjstkZxIREaOjozs7Ox4eHnFRUsVkaK6uru7u7rFjZcLCwt5iZ91jZ0dHR5WVlfRfZPNfZEVFRT4+PpGRkdBkaM9kaB0dHalhZLW1tXZTVEtLSxYVFfhdY1paWqJgYm9vb1BQUDUuLjQtLUJCQsfHx5NdX8jIyNVjaNRjZ+3t7QAAACklJbKystjY2BcXF+RhZ+fn5+Pj4yIfH9tjZ5xfYc/Pz0BAQFFAQexgZrm5uRkXGG5QUZ6ent3d3dTU1GBgYIWFhZeXl/9cYiZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySZFySH5BAEAAJgALAAAAAA8ACcAAAj/ADEJ/EOwoMGDCBMqVCiwocOHCBJcWUCxosWLGDNqxHiFQQMHBx4+nDClpMmTKFOqXMmypAILF/6IxPTHQsubOHOezKABwcM/C3QKHZqSQgeZDYESXXrSwwMMIUSM8JDSwwaHSpkyJSHTBMETAFCgpKAhadCWFVi0IOFipQsSLVhUaLkAqUMCMiicZIE0q8oKIWgYrGFDgUsbNQzewDFXZd2ZO2oooOrBg5iBZ1P6+HAASBAhQ4gUMXIECZISRooQGSIkCJADH3w4tisSBtWSSWT6bYpFiZBLwIMzuVHiSBMmwYNDUQLh9snHMzEdiHK7ghSamU16YHCgyqU438Nf/+rj4ESf5MmrHGBQub2HK7RFHkBiEgt2lVkgAQeP/tKWIMHxlxwkN7hXGXzRDcRFSR6kcB9KXfzhhXj7UWghf3Gw8YcfBiKYICYYMDjAgyd98Qci/SUnYIXigfHHFx3GJxIWlI1Boklc/FGGiiwKuGJwZfzBRYwfYtLcFB6gcWNJivyhRo9QYlhhHFX8kQGRH+bA4BJLTqHAH2wEyGKK/SXyBwVYRvdHGybB0OUUKmhBoZQWigceEE4Y+J6MDpmAwm01dOkBCFb4SCZ4dMZhwgB6ejjTHyFUNgUFDrzpwx+JHFpncnr84UOjfGJiQgInXRHSbgx6oMMdUPIYnoCPAP8hqXuOYiUGByfZ9+YUefyhR5Su7qeFEV8giWR7tUqnwhXOTbFHX9lp58EAB5yX4o/g9WEEo7O29yxNfxxwxBgcNOuHCmZVhSQHdjhBiJ3BXsJEDHaUS5mBScgQiCD2SsrgZek2da8kTjiB3KbCIeDEp93q2V5KIywSUsAMGnubIYc8Yi2ZfZigBMP3OuzwS4+I5NesxiJZyAdG/JoiIzHcYUi/x4rsniIJxDDxT2dRZnHNCrzwhx1xCMjEHTHogUIFKDtswwwdzDCDDkqEitmxP/vMoCOPxBDmJYkgAEcbc93WcHsmFmnyAj63nXJ7SBRxQBFAGAFEIeVmXTOyVqt2ybbeblscCQIIMMa02yInq3ZNiGf9cGUKTPZ2yA5H0nd0L2DduHPuAW6xw26qLdIOktzrec2eU27gJDuL7hAPTQPusOM24+H6owbQt/nsuxuoQAOXq22EDpVYcMUVxieP/PLGM++882PQUfLtiy9k/UImUD9TQAA7'/><span style='position: relative; bottom:0px;'>&nbsp;&nbsp;&nbsp;You can support me on Ko-fi</span></a></span><br><br><span style='font-size:14px;'>https://ko-fi.com/sesio</span></center><br><br>"
   },
-
-  // PATREON
-  // {
-  //   "type": "text",
-  //   "defaultValue": "<center><span style='background-color: #E35945; xline-height: 20px; xvertical-align:bottom; color: #ffffff; border-radius: 100px; padding: 10px 20px 10px 15px;'><a style='color: #ffffff; text-decoration:none;'href='https://www.patreon.com/sesio'><img style='vertical-align:middle;' height='24' src='data:image/gif;base64,R0lGODlhPAA5APEAAAAAAP///yZFySZFySH5BAEAAAIALAAAAAA8ADkAAALYjI+iy+0PY0M0yCtqxUwf7niihY1gN5qSCqYuCbHl+8ZiS9OPHOV+eLv4hpNgb/hDeVZI4oJXbCYzRqB0Cn1enVnqNtn9cqtKsS5rJqLTOa9mxz6TFXH50lo3rfP6uZv/tgcY6Dd4E2a4gZiYsMhI4shI5zcpWflmY/lHwWRYttEJ+MkZmheFWcqGBypUB3c3k5aJGvt1BItzlZpwouW0+9E7ittKLHzJ29t1zHzK2gy9ShpN7UtbHb2MrUy5zW3sLawdXvtMLt59XnytnsveXj4N724+f1EAADs='/><span style='position: relative; bottom:0px;'>&nbsp;&nbsp;&nbsp;You can support me on Patreon</span></a></span><br><br><span style='font-size:14px;'>https://www.patreon.com/sesio</span></center><br><br>"
-  // },
-
   {
     "type": "text",
     "defaultValue": "<br><br>"
   },
-  // SAVE BUTTON
   {
     "type": "submit",
     "id": "SectionFixedSubmit",
