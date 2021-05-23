@@ -1,6 +1,10 @@
 [
   {
     "type": "heading",
+    "id": "INIT_BIG"
+  },
+  {
+    "type": "heading",
     "id": "SectionVersion",
     "defaultValue": "<div style=\"position: fixed; padding: 20px 0 10px 10px; z-index: 1000; background-color: #414141; top: 0; left: 0; width: 100%; border-bottom: 1px solid #646464;\"><details><summary>Any Cockpit APP_VERSION_NO</summary><ul style=\"text-transform: none; font-weight: normal; font-size: 14px;\"><li>&nbsp;</li>APP_VERSION_LOG<li>&nbsp;</li><li><a href=\"https://derivat3.github.io/pebble-watchface-any-cockpit/\">More information</a></li></ul></details></div>"
   },
