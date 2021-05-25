@@ -3266,7 +3266,8 @@
       {
         "type": "text",
         "id": "SectionBackup_5_1",
-        "defaultValue": "<a href=\"https://derivat3.github.io/pebble-watchface-any-cockpit/themes/list\" style=\"box-shadow: 5px 5px 10px 0 rgba(0,0,0,.4); display: block; font-weight: bold; text-align: center; text-decoration: none; font-size: 18px; font-weight: normal; background-color: transparent; border: 1px solid #41EA15; color: #41EA15; border-radius: 4px; padding: 10px 20px;\">Find new Themes here!</a>"
+        "messageKey": "OpenThemeOverlay",
+        "defaultValue": "<div style=\"box-shadow: 5px 5px 10px 0 rgba(0,0,0,.4); display: block; font-weight: bold; text-align: center; text-decoration: none; font-size: 18px; font-weight: normal; background-color: transparent; border: 1px solid #41EA15; color: #41EA15; border-radius: 4px; padding: 10px 20px;\">Find new Themes here!</div>"
       },
       {
         "type": "text",
@@ -3314,5 +3315,10 @@
     "type": "submit",
     "id": "SectionFixedSubmit",
     "defaultValue": "OK"
+  },
+  {
+    "type": "text",
+    "messageKey": "SelectThemeOverlay",
+    "defaultValue": ""
   }
 ]
