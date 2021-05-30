@@ -19,7 +19,13 @@
         "defaultValue": "<h2>Variations</h2>"
       },
       {
+        "type": "text",
         "id": "SectionVariations_1",
+        "messageKey": "OpenThemeOverlay1",
+        "defaultValue": "<div style=\"box-shadow: 5px 5px 10px 0 rgba(0,0,0,.4); display: block; font-weight: bold; text-align: center; text-decoration: none; font-size: 18px; font-weight: normal; background-color: transparent; border: 1px solid #41EA15; color: #41EA15; border-radius: 4px; padding: 10px 20px;\">Import online Themes here!</div>"
+      },
+      {
+        "id": "SectionVariations_2",
         "type": "radiogroup",
         "label": "Mode:",
         "messageKey": "VariationAction",
@@ -44,7 +50,7 @@
         ]
       },
       {
-        "id": "SectionVariations_2",
+        "id": "SectionVariations_3",
         "type": "slider",
         "messageKey": "VariationSlot",
         "defaultValue": 1,
@@ -62,7 +68,7 @@
     ]
   },
   {
-    "id": "SectionVariations_3",
+    "id": "SectionVariations_4",
     "type": "text",
     "defaultValue": "<br>"
   },
@@ -3267,7 +3273,7 @@
         "type": "text",
         "id": "SectionBackup_5_1",
         "messageKey": "OpenThemeOverlay",
-        "defaultValue": "<div style=\"box-shadow: 5px 5px 10px 0 rgba(0,0,0,.4); display: block; font-weight: bold; text-align: center; text-decoration: none; font-size: 18px; font-weight: normal; background-color: transparent; border: 1px solid #41EA15; color: #41EA15; border-radius: 4px; padding: 10px 20px;\">Find new Themes here!</div>"
+        "defaultValue": "<div style=\"box-shadow: 5px 5px 10px 0 rgba(0,0,0,.4); display: block; font-weight: bold; text-align: center; text-decoration: none; font-size: 18px; font-weight: normal; background-color: transparent; border: 1px solid #41EA15; color: #41EA15; border-radius: 4px; padding: 10px 20px;\">Import online Themes here!</div>"
       },
       {
         "type": "text",
