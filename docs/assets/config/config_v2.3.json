@@ -16,7 +16,7 @@
       {
         "id": "SectionVariations",
         "type": "heading",
-        "defaultValue": "<h2>Variations</h2>"
+        "defaultValue": "<h2>Actions</h2>"
       },
       {
         "type": "text",
@@ -27,7 +27,6 @@
       {
         "id": "SectionVariations_2",
         "type": "radiogroup",
-        "label": "Mode:",
         "messageKey": "VariationAction",
         "defaultValue": "save",
         "options": [
@@ -36,16 +35,20 @@
             "value": "save"
           },
           {
-            "label": "Save Watchface",
-            "value": "saveWf"
-          },
-          {
             "label": "Load",
-            "value": "load"
+            "value": "theme"
           },
           {
             "label": "Load Preset",
             "value": "preset"
+          },
+          {
+            "label": "<span style=\"opacity: .5;\">Save randomized Watchface</span>",
+            "value": "saveWf"
+          },
+          {
+            "label": "<span style=\"opacity: .5;\">Load but keep custom values</span>",
+            "value": "load"
           }
         ]
       },
