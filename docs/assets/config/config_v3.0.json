@@ -39,16 +39,12 @@
             "value": "theme"
           },
           {
-            "label": "Load Preset",
+            "label": "<span style=\"opacity: .5;\">Load Preset</span>",
             "value": "preset"
           },
           {
             "label": "<span style=\"opacity: .5;\">Save randomized Watchface</span>",
             "value": "saveWf"
-          },
-          {
-            "label": "<span style=\"opacity: .5;\">Load but keep custom values</span>",
-            "value": "load"
           }
         ]
       },
