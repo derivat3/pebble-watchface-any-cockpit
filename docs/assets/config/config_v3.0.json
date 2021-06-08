@@ -822,28 +822,28 @@
         "id": "SectionCalendar_4_1",
         "messageKey": "NextDateColor",
         "defaultValue": "0x0000AA",
-        "label": "Next Date Color"
+        "label": "Next Event Color"
       },
       {
         "type": "color",
         "id": "SectionCalendar_4_2",
         "messageKey": "ActiveDateColor",
         "defaultValue": "0xFF0000",
-        "label": "Active Date Color"
+        "label": "Active Event Color"
       },
       {
         "type": "color",
         "id": "SectionCalendar_4_3",
         "messageKey": "InactiveDateColor",
         "defaultValue": "0xAAAAAA",
-        "label": "Inactive Date Color"
+        "label": "Inactive Event Color"
       },
       {
         "type": "slider",
         "id": "SectionCalendar_4_4",
         "messageKey": "DateThickness",
         "defaultValue": 23,
-        "label": "Date Thickness",
+        "label": "Calendar Thickness",
         "description": "",
         "min": 0,
         "max": 100,
@@ -854,7 +854,7 @@
         "id": "SectionCalendar_4_5",
         "messageKey": "DateOffset",
         "defaultValue": 0,
-        "label": "Date Offset",
+        "label": "Calendar Offset",
         "description": "",
         "min": 0,
         "max": 200,
@@ -873,17 +873,17 @@
       {
         "type": "text",
         "id": "SectionCalendar_5",
-        "defaultValue": "&nbsp;&#x25B6;&nbsp;&nbsp; Alerts"
+        "defaultValue": "&nbsp;&#x25B6;&nbsp;&nbsp; Notifications"
       },
       {
         "type": "select",
         "id": "SectionCalendar_5_1",
         "messageKey": "NotificationTextMinute",
         "defaultValue": "30",
-        "label": "Date Notes",
+        "label": "Event Details",
         "options": [
           {
-            "label": "Hide Notes",
+            "label": "Hide Details",
             "value": "0"
           },
           {
@@ -947,7 +947,7 @@
         "id": "SectionCalendar_5_3",
         "messageKey": "NotificationCounter",
         "defaultValue": "10",
-        "label": "Date Counter",
+        "label": "Event Counter",
         "options": [
           {
             "label": "No Counter",
@@ -1022,7 +1022,7 @@
             "value": "none"
           },
           {
-            "label": "Show calendar date notes",
+            "label": "Show calendar event details",
             "value": "cal"
           },
           {
@@ -1030,7 +1030,7 @@
             "value": "rand"
           },
           {
-            "label": "Step through watchfaces",
+            "label": "Step through memory slots",
             "value": "step"
           }
         ]
@@ -1040,7 +1040,7 @@
         "id": "SectionShakeEvents_2",
         "messageKey": "ShakeEventStart",
         "defaultValue": 1,
-        "label": "Watchface Step Start",
+        "label": "Memory Slot Start",
         "description": "",
         "min": 1,
         "max": 10,
@@ -1051,7 +1051,7 @@
         "id": "SectionShakeEvents_3",
         "messageKey": "ShakeEventStop",
         "defaultValue": 10,
-        "label": "Watchface Step Stop",
+        "label": "Memory Slot Stop",
         "description": "",
         "min": 1,
         "max": 10,
@@ -3184,7 +3184,7 @@
         "id": "SectionBackup_3",
         "type": "toggle",
         "messageKey": "BackupIncludeCVars",
-        "label": "Include Custom Variables",
+        "label": "Include Custom Values",
         "description": "Be aware not to share private credentials by accidentally enable this setting",
         "defaultValue": false
       }
