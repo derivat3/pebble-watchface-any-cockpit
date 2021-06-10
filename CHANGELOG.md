@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.0 - 2021-06-10
+**Improvement and Bugfix**
+- Added online settings menu as fallback
+- Small menu is replaced by online settings menu
+- Custom Values are saved for each memory slot
+- Optimized import of online themes
+- Fixed a bug in the ISO calendar week calculation
+
 ## v2.2 - 2020-12-05
 **Improvement and Bugfix**
 - Optimized the XHR result handling for usability
