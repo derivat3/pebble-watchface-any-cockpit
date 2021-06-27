@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.1 - 2021-06-27
+**Improvement and Bugfix**
+- Fixed a time bug with full day calendar events
+- Fixed a bug on save current watchface
+- Optimized the method to calculate random colors
+- And some other bugs and optimizations
+
 ## v3.0 - 2021-06-10
 **Improvement and Bugfix**
 - Added online settings menu as fallback
