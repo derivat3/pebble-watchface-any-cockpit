@@ -1361,7 +1361,7 @@
         "defaultValue": "",
         "label": "Label",
         "attributes": {
-          "placeholder": "optional: [string]",
+          "placeholder": "optional: [string,_placeholder_]",
           "limit": 10,
           "type": "text"
         }
