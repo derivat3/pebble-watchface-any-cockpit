@@ -1,5 +1,20 @@
 # Changelog
 
+## v4.0 - 2021-12-09
+**Improvement and Bugfix**
+- Increased the number of dashboard elements to 10
+- Enable dashboard element alarm vibrations
+- Added dashboard element alarm type 'Message'
+- Added new dashboard element orientation types
+- Added adjustment slider for dashboard elements
+- Added new Dashboard element types:
+  > Bar Top
+  > Cake Bottom
+  > Gauge
+  > Gauge striped
+- Code refactoring to reduce size and memory consumption
+- Some bug fixes
+
 ## v3.1 - 2021-06-27
 **Improvement and Bugfix**
 - Fixed a time bug with full day calendar events
