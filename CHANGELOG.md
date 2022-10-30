@@ -1,5 +1,13 @@
 # Changelog
 
+## v4.1 - 2022-10-30
+**Improvement and Bugfix**
+- You can now use RegEx to process XHR Responses
+- Theme names are now handled and persisted
+- Color handling of the random generator optimized
+- Behavior of the content type hidden updated
+- Handling of dashboard boolean values updated
+
 ## v4.0 - 2021-12-09
 **Improvement and Bugfix**
 - Increased the number of dashboard elements to 10
