@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.2 - 2022-11-27
+**Improvement and Bugfix**
+- Any Cockpit now supports iOS 15+
+- Added new Online Themes
+- Some bug fixes
+
 ## v4.1 - 2022-10-30
 **Improvement and Bugfix**
 - You can now use RegEx to process XHR Responses
