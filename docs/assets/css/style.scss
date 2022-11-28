@@ -121,6 +121,17 @@
   }
 }
 
+.ac-theme-item.ac-theme-round {
+  width: 156px !important;
+  height: 156px !important;
+  border-radius: 500px;
+  overflow: hidden;
+  a {
+    position: relative;
+    top: -37px;
+  }
+}
+
 /*********************/
 /** details element **/
 details {
