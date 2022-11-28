@@ -126,6 +126,9 @@
   height: 156px !important;
   border-radius: 500px;
   overflow: hidden;
+  &:hover {
+    margin-bottom: 20px;
+  } 
   a {
     position: relative;
     top: -37px;
