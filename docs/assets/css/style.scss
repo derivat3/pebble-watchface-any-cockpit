@@ -136,6 +136,26 @@
   }
 }
 
+.ac-theme-item.ac-theme-square {
+  width: 156px !important;
+  height: 180px !important;
+  border-radius: 14px;
+  overflow: hidden;
+  &:hover {
+    margin-bottom: 20px;
+  } 
+  a {
+    position: relative;
+    top: 0;
+  }
+  img {
+    width: 128%;
+    margin-left: -15%;
+    position: relative;
+    top: -33%;
+  }
+}
+
 /*********************/
 /** details element **/
 details {
