@@ -3,7 +3,7 @@
 ## v4.3 - 2023-04-30
 **Improvement and Bugfix**
 - Slow internet connection does not disable GET calls
-- Some bug fixes
+- Some bug fixes 
 
 ## v4.2 - 2022-11-27
 **Improvement and Bugfix**
