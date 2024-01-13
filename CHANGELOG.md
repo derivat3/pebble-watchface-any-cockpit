@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.4 - 2024-01-13
+**Improvement and Bugfix**
+- Support the new Google Calendar ID length
+
 ## v4.3 - 2023-04-30
 **Improvement and Bugfix**
 - Slow internet connection does not disable GET calls
