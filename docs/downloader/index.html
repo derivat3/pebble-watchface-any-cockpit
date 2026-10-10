@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AnyCockpit Downloader</title>
-    <!-- Manifest for PWA -->
+    <title>AnyCockpit Downloader</title>    
     <link rel="manifest" href="manifest.json" />
     <style>
       body {
@@ -200,19 +199,19 @@
       // PWA install Button
       // -------------------------------------------------------------
 
-      // Variable, um das vom Browser bereitgestellte Event zwischenzuspeichern
+      //       Variable, um das vom Browser bereitgestellte Event zwischenzuspeichern
       let deferredPrompt;
       const pwaInstallBtn = document.getElementById("pwaInstallBtn");
 
-      // 1. Browser-Event abfangen, sobald die PWA bereit zur Installation ist
+      // 1. Catch the browser event as soon as the PWA is ready for installation
       window.addEventListener("beforeinstallprompt", (e) => {
-        // Verhindert, dass der Standard-Installationsbanner des Browsers automatisch aufpoppt
+        // Prevents the browser's default install banner from appearing automatically
         e.preventDefault();
 
-        // Das Event für später speichern, wenn der Nutzer auf unseren Button klickt
+        // Store the event for later when the user clicks our button
         deferredPrompt = e;
 
-        // Deinen eigenen Installations-Button sichtbar machen
+        // Make your own install button visible
         pwaInstallBtn.style.display = "block";
       });
 
@@ -220,23 +219,23 @@
       pwaInstallBtn.addEventListener("click", async () => {
         if (!deferredPrompt) return;
 
-        // Den nativen Installations-Dialog des Browsers anzeigen
+        // Show the native install dialog of the browser
         deferredPrompt.prompt();
 
-        // Warten, wie sich der Nutzer entschieden hat (Installieren oder Abbrechen)
+        // Wait for the user's decision (Install or Cancel)
         const { outcome } = await deferredPrompt.userChoice;
-        console.log(`Nutzer-Entscheidung: ${outcome}`);
+        console.log(`User decision: ${outcome}`);
 
-        // Das Event löschen, da es nur einmal verwendet werden kann
+        // Remove the event, as it can only be used once
         deferredPrompt = null;
 
         // Deinen Button wieder ausblenden, da die App nun installiert wird/wurde
         pwaInstallBtn.style.display = "none";
       });
 
-      // 3. Optional: Prüfen, ob die App bereits erfolgreich installiert wurde
+      // 3. Optional: Check if the app has already been successfully installed
       window.addEventListener("appinstalled", (event) => {
-        console.log("PWA wurde erfolgreich installiert!");
+        console.log("PWA successfully installed!");
         pwaInstallBtn.style.display = "none";
         showToast("App install successfully!", "success", undefined);
       });
@@ -245,9 +244,9 @@
       // PWA REGISTRIERUNG & SHARE TARGET LOGIK (NEU)
       // -------------------------------------------------------------
 
-      const LS_SUCCESS_AFTER_PAGE_LOAD = "LS_SUCCESS_AFTER_PAGE_LOAD";
+const LS_SUCCESS_AFTER_PAGE_LOAD = "LS_SUCCESS_AFTER_PAGE_LOAD";
 
-      window.onload = function () {
+window.onload = function () {
         const message = sessionStorage.getItem(LS_SUCCESS_AFTER_PAGE_LOAD);
 
         if (message && message !== "") {
@@ -256,7 +255,7 @@
         }
       };
 
-      // Service Worker für GitHub Pages relativ registrieren
+      // Register Service Worker relative to GitHub Pages
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
           .register("./sw.js")
@@ -266,7 +265,7 @@
             // check for updates e.g. on APP start
             reg.update();
           })
-          .catch((err) => console.error("SW Registrierung fehlgeschlagen", err));
+          .catch((err) => console.error("SW registration failed", err));
 
         // Listen to Service Worker Update Message
         navigator.serviceWorker.addEventListener("message", (event) => {
@@ -276,10 +275,10 @@
               return;
             }
 
-            console.log("Neue App-Version erkannt! Lade neu...");
+            console.log("New app version detected! Reloading...");
             // Generischen Toast aufrufen
             showToast("New version available! Reloading...", "info", undefined).then(() => {
-              // 2. Sobald der Toast ausgeblendet ist, wird dieser Code ausgeführt
+              // 2. Once the toast is hidden, this code will execute
               console.log("Toast beendet. Lade Seite neu...");
               sessionStorage.setItem("LS_SUCCESS_AFTER_PAGE_LOAD", "✓ New version sucessfully installed!");
               window.location.reload();
@@ -308,7 +307,7 @@
         });
       }
 
-      // Prüfen, ob Daten über das native Teilen-Feature reinkamen
+      // Check if data came via the native Share feature
       window.addEventListener("DOMContentLoaded", async () => {
         const urlParams = new URLSearchParams(window.location.search);
 
@@ -322,7 +321,7 @@
               rawInput.value = largeString;
               console.log("✓ Data successfully received via share!");
 
-              // Bereinigung der URL-Zeile ohne Neuladen (behält GitHub Pages Pfad bei)
+              // Clean up URL line without reloading (keeps GitHub Pages path)
               const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
               window.history.replaceState({ path: cleanUrl }, "", cleanUrl);
 
@@ -343,10 +342,10 @@
       // CREATE DOWNLOAD LINK
       // -------------------------------------------------------------
 
-      // Global variable to track and release the memory allocated for the Blob URL
-      let currentBlobUrl = null;
+// Global variable to track and release the memory allocated for the Blob URL
+let currentBlobUrl = null;
 
-      const rawInput = document.getElementById("rawInput");
+const rawInput = document.getElementById("rawInput");
       const iframe = document.getElementById("previewFrame");
       const previewArea = document.getElementById("previewArea");
 
@@ -460,17 +459,17 @@
        * @param {string} message - Der anzuzeigende Text.
        * @param {string} type - Der Typ ('success', 'error', 'info'). Bestimmt die Farbe.
        * @param {number} duration - Wie lange der Toast sichtbar bleibt (in ms). Standard: 3000ms.
-       * @returns {Promise} Wird aufgelöst, sobald der Toast ausgeblendet wurde.
+       * @returns {Promise} Resolved when the toast has faded out.
        */
       function showToast(message, type = "info", duration = 3000) {
         return new Promise((resolve) => {
           const toast = document.getElementById("toastContainer");
           if (!toast) {
-            resolve(); // Sofort auflösen, falls das Element nicht existiert
+            resolve(); // Resolve immediately if element does not exist
             return;
           }
 
-          // Vorherige Timeouts löschen, falls schnell hintereinander Toasts gefeuert werden
+          // Clear previous timeouts if Toasts are fired quickly
           clearTimeout(toastTimeout);
 
           // Text setzen
@@ -478,7 +477,7 @@
 
           // Hintergrundfarbe basierend auf dem Typ definieren
           let backgroundColor = "#e3e3e8"; // Standard: Dunkelgrau (info)
-          // if (type === 'success') backgroundColor = '#34c759'; // Apple-Grün
+          // if (type === 'success') backgroundColor = '#34c759'; // Apple-Green
           if (type === "success") backgroundColor = "#d1f2d1";
           if (type === "error") backgroundColor = "#fdcccc";
 
@@ -488,7 +487,7 @@
           toast.style.display = "block";
           toast.classList.add("toast-show");
 
-          // Nach Ablauf der Dauer den Toast ausblenden und das Promise auflösen
+          // After the duration expires, hide the toast and resolve the Promise
           toastTimeout = setTimeout(() => {
             toast.style.display = "none";
             toast.classList.remove("toast-show");
