@@ -1,3 +1,19 @@
+# IDEs
+/.vscode/*
+# tasks.json in .vscode erlauben
+# !.vscode/tasks.json
+
+# node.js modules
+node_modules
+
+# build stuff
 .DS_Store
 _site
 Gemfile.lock
+
+# opencode devconatiner setup
+.devcontainer
+.opencode
+
+# local dev folder
+_dev
