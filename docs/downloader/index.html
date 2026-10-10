@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AnyCockpit Downloader</title>    
+    <title>AnyCockpit Downloader</title>
     <link rel="manifest" href="manifest.json" />
     <style>
       body {
@@ -244,9 +244,9 @@
       // PWA REGISTRIERUNG & SHARE TARGET LOGIK (NEU)
       // -------------------------------------------------------------
 
-const LS_SUCCESS_AFTER_PAGE_LOAD = "LS_SUCCESS_AFTER_PAGE_LOAD";
+      const LS_SUCCESS_AFTER_PAGE_LOAD = "LS_SUCCESS_AFTER_PAGE_LOAD";
 
-window.onload = function () {
+      window.onload = function () {
         const message = sessionStorage.getItem(LS_SUCCESS_AFTER_PAGE_LOAD);
 
         if (message && message !== "") {
@@ -342,10 +342,10 @@ window.onload = function () {
       // CREATE DOWNLOAD LINK
       // -------------------------------------------------------------
 
-// Global variable to track and release the memory allocated for the Blob URL
-let currentBlobUrl = null;
+      // Global variable to track and release the memory allocated for the Blob URL
+      let currentBlobUrl = null;
 
-const rawInput = document.getElementById("rawInput");
+      const rawInput = document.getElementById("rawInput");
       const iframe = document.getElementById("previewFrame");
       const previewArea = document.getElementById("previewArea");
 
