@@ -261,10 +261,12 @@
                 if (event.data && event.data.type === 'MSG_VERSION_UPDATED') {
                     console.log('Neue App-Version erkannt! Lade neu...');
                     // Generischen Toast aufrufen
-                    showToast('New version available! Reloading...', 'success', undefined).then(() => {
+                    showToast('New version available! Reloading...', 'info', undefined).then(() => {
                         // 2. Sobald der Toast ausgeblendet ist, wird dieser Code ausgeführt
                         console.log('Toast beendet. Lade Seite neu...');
-                        window.location.reload();
+                        navigation.reload().finished.then(() => {
+                          showToast('✓ New version sucessfully installed!', 'success', undefined);
+                        });                      
                     });
                 }
             });
@@ -310,6 +312,8 @@
 
                         // Automatisch den Render-Prozess anstoßen
                         document.getElementById('renderBtn').click();
+
+                        showToast('✓ Data received and Link generated', 'success', undefined);
                     } else {
                         console.log('No shared data found in storage.');
                     }
