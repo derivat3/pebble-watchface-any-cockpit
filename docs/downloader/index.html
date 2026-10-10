@@ -27,7 +27,7 @@
             max-width: 800px;
             margin: 0 auto;
             font-weight: lighter;
-            background-image: url("./disk.png");
+            background-image: url("./icon-192.png");
             background-repeat: no-repeat;
             background-size: 40px;
             background-position: 20px center;
@@ -37,6 +37,15 @@
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            text-align: center;
+            width: 100%;
+            background-color: #333;
+            padding: 0;
+            margin: 0;
         }
         h2 {
             margin-bottom: 10px;
@@ -110,6 +119,21 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
+        .pwaInstallBtnStyle {
+            background-image: url("./disk.png");
+            background-repeat: no-repeat;
+            background-size: 40px;
+            background-position: 10px center;
+            text-indent: 50px;
+            display: none;
+            background-color: #ccc;
+            color: #333;
+            margin: 20px;
+            background-blend-mode: difference;
+        }
+        .pwaInstallBtnStyle:hover {
+            background-color: #a9a8a8;
+        }
     </style>
 </head>
 <body>
@@ -143,7 +167,59 @@
         </div>
     </main>
 
+    <footer>
+        <!-- Dieser Button wird nur angezeigt, wenn die App installierbar ist -->
+        <button id="pwaInstallBtn2" class="pwaInstallBtnStyle">
+            Install on Smartphone
+        </button>
+    </footer>
+
     <script>
+        // -------------------------------------------------------------
+        // PWA install Button
+        // -------------------------------------------------------------
+
+        // Variable, um das vom Browser bereitgestellte Event zwischenzuspeichern
+        let deferredPrompt;
+        const pwaInstallBtn = document.getElementById('pwaInstallBtn');
+
+        // 1. Browser-Event abfangen, sobald die PWA bereit zur Installation ist
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Verhindert, dass der Standard-Installationsbanner des Browsers automatisch aufpoppt
+            e.preventDefault();
+            
+            // Das Event für später speichern, wenn der Nutzer auf unseren Button klickt
+            deferredPrompt = e;
+            
+            // Deinen eigenen Installations-Button sichtbar machen
+            pwaInstallBtn.style.display = 'block';
+        });
+
+        // 2. Klick-Event auf deinen eigenen Button registrieren
+        pwaInstallBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            
+            // Den nativen Installations-Dialog des Browsers anzeigen
+            deferredPrompt.prompt();
+            
+            // Warten, wie sich der Nutzer entschieden hat (Installieren oder Abbrechen)
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`Nutzer-Entscheidung: ${outcome}`);
+            
+            // Das Event löschen, da es nur einmal verwendet werden kann
+            deferredPrompt = null;
+            
+            // Deinen Button wieder ausblenden, da die App nun installiert wird/wurde
+            pwaInstallBtn.style.display = 'none';
+        });
+
+        // 3. Optional: Prüfen, ob die App bereits erfolgreich installiert wurde
+        window.addEventListener('appinstalled', (event) => {
+            console.log('PWA wurde erfolgreich installiert!');
+            pwaInstallBtn.style.display = 'none';
+        });
+
+
         // -------------------------------------------------------------
         // PWA REGISTRIERUNG & SHARE TARGET LOGIK (NEU)
         // -------------------------------------------------------------
