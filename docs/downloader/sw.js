@@ -1,4 +1,4 @@
-// update version to invalidate cache and to trigger PWA update
+// Update version to invalidate cache and trigger PWA update
 const CACHE_NAME = "string-receiver-v6";
 
 self.addEventListener("install", (event) => {
@@ -8,7 +8,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     clients.claim().then(() => {
-      // Sendet ein Signal an das Frontend, dass ein Update da ist
+      // Sends a signal to the frontend that an update is available
       return self.clients.matchAll().then((clients) => {
         clients.forEach((client) => client.postMessage({ type: "MSG_VERSION_UPDATED" }));
       });
@@ -16,7 +16,7 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// IndexedDB Hilfsfunktion zum Speichern im Service Worker
+// IndexedDB helper function for storing in the service worker
 function saveToIndexedDB(text) {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("SharedDataDB", 1);
@@ -43,11 +43,10 @@ function saveToIndexedDB(text) {
   });
 }
 
-// Intercepting des Share-Requests (optimiert fuer Unterordner)
+// Intercepting Share Requests (optimized for subfolders)
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
-  // Reagiert, wenn der Pfad auf das Share-Ziel im Unterordner endet
   if (event.request.method === "POST" && url.pathname.endsWith("/incoming-share")) {
     event.respondWith(
       (async () => {
@@ -57,11 +56,11 @@ self.addEventListener("fetch", (event) => {
 
           await saveToIndexedDB(sharedText);
 
-          // Ersetzt nur den hinteren Teil der URL, damit /downloader/ erhalten bleibt
+          // Replaces only the end of the URL to keep /downloader/
           const redirectUrl = event.request.url.replace("incoming-share", "?shared=true");
           return Response.redirect(redirectUrl, 303);
         } catch (error) {
-          console.error("Fehler beim Verarbeiten des geteilten Strings:", error);
+          console.error("Error processing shared string:", error);
           const errorUrl = event.request.url.replace("incoming-share", "?error=share-failed");
           return Response.redirect(errorUrl, 303);
         }
