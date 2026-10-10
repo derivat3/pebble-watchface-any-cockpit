@@ -44,6 +44,7 @@
         background-color: #333;
         padding: 0;
         margin: 0;
+        text-align: center;
       }
       h2 {
         margin-bottom: 10px;
@@ -104,16 +105,20 @@
         margin-top: -40%;
         margin-left: -50%;
       }
+      #pwaInstallWrapper {
+        /* display: none; */
+        display: inline-block;
+        margin: 20px auto;
+      }
       .pwaInstallBtnStyle {
         background-image: url("./disk.png");
         background-repeat: no-repeat;
         background-size: 40px;
         background-position: 10px center;
         text-indent: 50px;
-        display: none;
+        display: inline-block;
         background-color: #fff;
-        color: #333;
-        margin: 20px auto;
+        color: #333;        
         background-blend-mode: difference;
         box-shadow: 2px 2px 0 0 black;
       }
@@ -162,6 +167,64 @@
           transform: translate(-50%, 0);
         }
       }
+      #pwaInfoBtnWrapper {
+        /* display: none; */
+        display: inline-block;
+        position: relative;
+        margin-left: 10px;
+      }
+      #pwaInfoBtn {
+        background-color: transparent;
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        padding: 0;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #fff;
+        cursor: pointer;
+      }
+      #pwaInfoBtn::after {
+        content: "ℹ";
+        font-size: 30px;
+        position: relative;
+        width: 36px;
+        height: 36px;
+        line-height: 94%;
+        font-weight: lighter;
+      }
+      #pwaPopover {
+        display: none;
+        position: absolute;
+        bottom: 45px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffffff;
+        color: #333333;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        padding: 12px;
+        border-radius: 8px;
+        width: 240px;
+        font-size: 18px;
+        line-height: 1.4;
+        z-index: 10000;
+        font-weight: normal;
+      }
+      #pwaPopoverArrow {
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 10px;
+        height: 10px;
+        background-color: #ffffff;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+      }
     </style>
   </head>
   <body>
@@ -188,8 +251,22 @@
     </main>
 
     <footer>
-      <!-- Show install buttton when PWA is installable -->
-      <button id="pwaInstallBtn" class="pwaInstallBtnStyle">Install on Smartphone</button>
+      <div id="pwaInstallWrapper">
+        <!-- Show install buttton when PWA is installable -->
+        <button id="pwaInstallBtn" class="pwaInstallBtnStyle">Install on Smartphone</button>
+        <!-- Info icon button wrapper (hidden by default) -->
+        <div id="pwaInfoBtnWrapper">
+          <button id="pwaInfoBtn" aria-label="Info"></button>
+
+          <!-- Popover element with engaging promotional text -->
+          <div id="pwaPopover">
+            <!-- Small decorative arrow pointing upwards -->
+            <div id="pwaPopoverArrow"></div>
+            Install this PWA now to unlock seamless sharing! Instantly send and securely store your backups directly
+            from the App Settings.
+          </div>
+        </div>
+      </div>
     </footer>
 
     <div id="toastContainer"></div>
@@ -199,11 +276,14 @@
       // PWA install Button
       // -------------------------------------------------------------
 
-      //       Variable, um das vom Browser bereitgestellte Event zwischenzuspeichern
+      // Variable to temporarily store the event provided by the browser
       let deferredPrompt;
       const pwaInstallBtn = document.getElementById("pwaInstallBtn");
+      const pwaInstallWrapper = document.getElementById("pwaInstallWrapper");
+      const pwaInfoBtn = document.getElementById("pwaInfoBtn");
+      const pwaPopover = document.getElementById("pwaPopover");
 
-      // 1. Catch the browser event as soon as the PWA is ready for installation
+      // 1. Intercept the browser event: PWA is eligible for installation
       window.addEventListener("beforeinstallprompt", (e) => {
         // Prevents the browser's default install banner from appearing automatically
         e.preventDefault();
@@ -211,11 +291,11 @@
         // Store the event for later when the user clicks our button
         deferredPrompt = e;
 
-        // Make your own install button visible
-        pwaInstallBtn.style.display = "block";
+        // Make element visible at the same time
+        pwaInstallWrapper.style.display = "inline-block";
       });
 
-      // 2. Klick-Event auf deinen eigenen Button registrieren
+      // 2. Click event on the installation button
       pwaInstallBtn.addEventListener("click", async () => {
         if (!deferredPrompt) return;
 
@@ -229,15 +309,32 @@
         // Remove the event, as it can only be used once
         deferredPrompt = null;
 
-        // Deinen Button wieder ausblenden, da die App nun installiert wird/wurde
-        pwaInstallBtn.style.display = "none";
+        // Hide element and close the popover immediately
+        pwaInstallWrapper.style.display = "none";
+        pwaPopover.style.display = "none";
       });
 
-      // 3. Optional: Check if the app has already been successfully installed
+      // 3. Fallback/Cleanup event if the app was successfully installed
       window.addEventListener("appinstalled", (event) => {
         console.log("PWA successfully installed!");
-        pwaInstallBtn.style.display = "none";
+        pwaInstallWrapper.style.display = "none";
+        pwaPopover.style.display = "none";
         showToast("App install successfully!", "success", undefined);
+      });
+
+      // 4. Toggle the popover visibility when clicking the info icon
+      pwaInfoBtn.addEventListener("click", (event) => {
+        // Prevent the click event from bubbling up to the window listener
+        event.stopPropagation();
+        const isVisible = pwaPopover.style.display === "block";
+        pwaPopover.style.display = isVisible ? "none" : "block";
+      });
+
+      // 5. Automatically dismiss the popover when the user clicks anywhere else
+      window.addEventListener("click", (event) => {
+        if (pwaPopover.style.display === "block" && !pwaPopover.contains(event.target)) {
+          pwaPopover.style.display = "none";
+        }
       });
 
       // -------------------------------------------------------------
@@ -276,7 +373,7 @@
             }
 
             console.log("New app version detected! Reloading...");
-            // Generischen Toast aufrufen
+            // Trigger a generic toast
             showToast("New version available! Reloading...", "info", undefined).then(() => {
               // 2. Once the toast is hidden, this code will execute
               console.log("Toast beendet. Lade Seite neu...");
@@ -287,7 +384,7 @@
         });
       }
 
-      // Hilfsfunktion zum Auslesen aus der IndexedDB
+      // Helper function to read from IndexedDB
       function getFromIndexedDB() {
         return new Promise((resolve, reject) => {
           const request = indexedDB.open("SharedDataDB", 1);
@@ -317,7 +414,7 @@
           try {
             const largeString = await getFromIndexedDB();
             if (largeString) {
-              // Den empfangenen String in das Textfeld einsetzen
+              // Insert the received string into the text field
               rawInput.value = largeString;
               console.log("✓ Data successfully received via share!");
 
@@ -325,7 +422,7 @@
               const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
               window.history.replaceState({ path: cleanUrl }, "", cleanUrl);
 
-              // Automatisch den Render-Prozess anstoßen
+              // Automatically trigger the rendering process
               createDownloadLink("shareHandler");
             } else {
               console.log("No shared data found in storage.");
@@ -472,18 +569,17 @@
           // Clear previous timeouts if Toasts are fired quickly
           clearTimeout(toastTimeout);
 
-          // Text setzen
+          // Set Text
           toast.innerText = message;
 
-          // Hintergrundfarbe basierend auf dem Typ definieren
-          let backgroundColor = "#e3e3e8"; // Standard: Dunkelgrau (info)
-          // if (type === 'success') backgroundColor = '#34c759'; // Apple-Green
+          // Define background color based on the type
+          let backgroundColor = "#e3e3e8";
           if (type === "success") backgroundColor = "#d1f2d1";
           if (type === "error") backgroundColor = "#fdcccc";
 
           toast.style.backgroundColor = backgroundColor;
 
-          // Toast anzeigen und Animation starten
+          // Show toast and start animation
           toast.style.display = "block";
           toast.classList.add("toast-show");
 
@@ -491,7 +587,7 @@
           toastTimeout = setTimeout(() => {
             toast.style.display = "none";
             toast.classList.remove("toast-show");
-            resolve(); // Hier wird signalisiert, dass der Toast fertig ist!
+            resolve(); // This signals that the toast is ready!
           }, duration);
         });
       }
