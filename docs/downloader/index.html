@@ -112,13 +112,14 @@
             background-position: 10px center;
             text-indent: 50px;
             display: none;
-            background-color: #ccc;
+            background-color: #fff;
             color: #333;
             margin: 20px auto;
             background-blend-mode: difference;
+            box-shadow: 2px 2px 0 0 black;
         }
         .pwaInstallBtnStyle:hover {
-            background-color: #a9a8a8;
+            box-shadow: 4px 4px 10px 0 black;
         }
         #toastContainer:before {
             display: block;
@@ -243,6 +244,17 @@
         // -------------------------------------------------------------
         // PWA REGISTRIERUNG & SHARE TARGET LOGIK (NEU)
         // -------------------------------------------------------------
+
+        const LS_SUCCESS_AFTER_PAGE_LOAD = 'LS_SUCCESS_AFTER_PAGE_LOAD';
+
+        window.onload = function () { 
+            const message = sessionStorage.getItem(LS_SUCCESS_AFTER_PAGE_LOAD)
+
+            if (message && message !== "" ) {
+                showToast(message, 'success', undefined);   
+                sessionStorage.removeItem(LS_SUCCESS_AFTER_PAGE_LOAD);
+            }
+        }
         
         // Service Worker für GitHub Pages relativ registrieren
         if ('serviceWorker' in navigator) {
@@ -268,9 +280,8 @@
                     showToast('New version available! Reloading...', 'info', undefined).then(() => {
                         // 2. Sobald der Toast ausgeblendet ist, wird dieser Code ausgeführt
                         console.log('Toast beendet. Lade Seite neu...');
-                        navigation.reload().finished.then(() => {
-                          showToast('✓ New version sucessfully installed!', 'success', undefined);
-                        });                      
+                        sessionStorage.setItem('LS_SUCCESS_AFTER_PAGE_LOAD', '✓ New version sucessfully installed!');
+                        window.location.reload();                    
                     });
                 }
             });
@@ -453,7 +464,7 @@
          * @param {number} duration - Wie lange der Toast sichtbar bleibt (in ms). Standard: 3000ms.
          * @returns {Promise} Wird aufgelöst, sobald der Toast ausgeblendet wurde.
          */
-        function showToast(message, type = 'info', duration = 5000) {
+        function showToast(message, type = 'info', duration = 3000) {
             return new Promise((resolve) => {
                 const toast = document.getElementById('toastContainer');
                 if (!toast) {
