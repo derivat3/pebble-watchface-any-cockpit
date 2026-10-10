@@ -1,6 +1,5 @@
 {
-  "name": "AnyCockpit Backup Downloader",
-  "short_name": "AnyCockpitDownloader",
+  "name": "AnyCockpit Downloader",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
