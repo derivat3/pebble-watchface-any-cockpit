@@ -1,11 +1,17 @@
-const CACHE_NAME = 'string-receiver-v1';
+// update version to invalidate cache and to trigger PWA update 
+const CACHE_NAME = 'string-receiver-v2';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(clients.claim());
+  event.waitUntil(clients.claim().then(() => {
+    // Sendet ein Signal an das Frontend, dass ein Update da ist
+    return self.clients.matchAll().then(clients => {
+      clients.forEach(client => client.postMessage({ type: 'MSG_VERSION_UPDATED' }));
+    });
+  }));
 });
 
 // IndexedDB Hilfsfunktion zum Speichern im Service Worker

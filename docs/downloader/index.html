@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AnyCockpit Downloader</title>
-    <!-- Das Manifest bindet die PWA ein -->
+    <!-- Manifest for PWA -->
     <link rel="manifest" href="manifest.json">
     <style>
         body {
@@ -41,7 +41,6 @@
         footer {
             position: fixed;
             bottom: 0;
-            text-align: center;
             width: 100%;
             background-color: #333;
             padding: 0;
@@ -106,19 +105,6 @@
             margin-top: -40%;
             margin-left: -50%;
         }
-        .error {
-            color: #f28800;
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: none;
-        }
-        /* Status-Anzeige für den Empfang über das Teilen-Menü */
-        .share-status {
-            color: #0071e3;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
         .pwaInstallBtnStyle {
             background-image: url("./disk.png");
             background-repeat: no-repeat;
@@ -128,11 +114,48 @@
             display: none;
             background-color: #ccc;
             color: #333;
-            margin: 20px;
+            margin: 20px auto;
             background-blend-mode: difference;
         }
         .pwaInstallBtnStyle:hover {
             background-color: #a9a8a8;
+        }
+        #toastContainer:before {
+            display: block;
+            content: "d";
+            position: absolute;
+            left: -2500px;
+            width: 5000px;
+            height: 0;
+            top: 20px;
+            z-index: -1;
+            box-shadow: 0px 10px 20px 30px rgba(0,0,0,.1);            
+        }
+        #toastContainer {
+            display: none;
+            position: fixed;
+            top: 54px;
+            left: 50%;
+            transform: translateX(-50%);
+            /* color: #ffffff; */
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 9999;
+            white-space: nowrap;
+            transition: opacity 0.3s ease-out;
+
+            color: #333333;
+            border: 1px solid white;
+        }
+        .toast-show {
+            animation: fadeDown 0.3s ease-out forwards;
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translate(-50%, -20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
         }
     </style>
 </head>
@@ -148,17 +171,12 @@
             Possible Export Types: HTML File, SVG File and JSON File
         </p>
         
-        <!-- Status-Text für eingehende Shares -->
-        <div id="shareStatus" class="share-status"></div>
-
         <textarea id="rawInput" placeholder="data:text/html;utf8,..."></textarea>
         
         <div class="button-group">
             <button id="renderBtn">Generate Download Link</button>
             <button id="resetBtn">Reset</button>
         </div>
-
-        <div id="errorMsg" class="error"></div>
 
         <div id="previewArea" style="display: none;">
             <div class="output-container">
@@ -168,11 +186,13 @@
     </main>
 
     <footer>
-        <!-- Dieser Button wird nur angezeigt, wenn die App installierbar ist -->
+        <!-- Show install buttton when PWA is installable -->
         <button id="pwaInstallBtn" class="pwaInstallBtnStyle">
             Install on Smartphone
         </button>
     </footer>
+
+    <div id="toastContainer"></div>
 
     <script>
         // -------------------------------------------------------------
@@ -217,6 +237,7 @@
         window.addEventListener('appinstalled', (event) => {
             console.log('PWA wurde erfolgreich installiert!');
             pwaInstallBtn.style.display = 'none';
+            showToast('App install successfully!', 'success', undefined);            
         });
 
 
@@ -227,8 +248,26 @@
         // Service Worker für GitHub Pages relativ registrieren
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js')
-                .then(() => console.log('Service Worker registriert'))
+                .then((reg) => {
+                    console.log('Service Worker registriert');
+               
+                    // check for updates e.g. on APP start
+                    reg.update(); 
+                })
                 .catch(err => console.error('SW Registrierung fehlgeschlagen', err));
+
+             // Listen to Service Worker Update Message
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                if (event.data && event.data.type === 'MSG_VERSION_UPDATED') {
+                    console.log('Neue App-Version erkannt! Lade neu...');
+                    // Generischen Toast aufrufen
+                    showToast('New version available! Reloading...', 'success', undefined).then(() => {
+                        // 2. Sobald der Toast ausgeblendet ist, wird dieser Code ausgeführt
+                        console.log('Toast beendet. Lade Seite neu...');
+                        window.location.reload();
+                    });
+                }
+            });
         }
 
         // Hilfsfunktion zum Auslesen aus der IndexedDB
@@ -254,17 +293,16 @@
         // Prüfen, ob Daten über das native Teilen-Feature reinkamen
         window.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const shareStatus = document.getElementById('shareStatus');
             
             if (urlParams.has('shared')) {
-                shareStatus.innerText = 'Extracting shared data...';
+                console.log('Extracting shared data...');
                 
                 try {
                     const largeString = await getFromIndexedDB();
                     if (largeString) {
                         // Den empfangenen String in das Textfeld einsetzen
                         rawInput.value = largeString;
-                        shareStatus.innerText = '✓ Data successfully received via share!';
+                        console.log('✓ Data successfully received via share!');
                         
                         // Bereinigung der URL-Zeile ohne Neuladen (behält GitHub Pages Pfad bei)
                         const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
@@ -273,17 +311,18 @@
                         // Automatisch den Render-Prozess anstoßen
                         document.getElementById('renderBtn').click();
                     } else {
-                        shareStatus.innerText = 'No shared data found in storage.';
+                        console.log('No shared data found in storage.');
                     }
                 } catch (e) {
-                    shareStatus.innerText = 'Error loading shared data.';
+                    console.log('Error loading shared data.');
+                    showToast('Error loading shared data.', 'error', undefined);
                     console.error(e);
                 }
             }
         });
 
         // -------------------------------------------------------------
-        // DEINE BESTEHENDE LOGIK (UNVERÄNDERT)
+        // CREATE DOWNLOAD LINK
         // -------------------------------------------------------------
         
         // Global variable to track and release the memory allocated for the Blob URL
@@ -291,20 +330,17 @@
 
         const rawInput = document.getElementById('rawInput');
         const iframe = document.getElementById('previewFrame');
-        const errorMsg = document.getElementById('errorMsg');
         const previewArea = document.getElementById('previewArea');
 
         // EVENT LISTENER: RENDER BUTTON
         document.getElementById('renderBtn').addEventListener('click', function() {
             const input = rawInput.value.trim();
             
-            // Reset error messages and hidden state
-            errorMsg.style.display = 'none';
-            errorMsg.innerText = '';
+            // Reset hidden state
             previewArea.style.display = 'none';
 
             const renderInvalidInputError = () => {
-                showError('Please enter a valid AnyCockpit Export String.');
+                showToast('Please enter a valid AnyCockpit Export String.', 'error', undefined);
             };
 
             if (!input) {
@@ -361,7 +397,7 @@
                 previewArea.style.display = 'block';
 
             } catch (e) {
-                showError('Decoding error: Please check your Base64 string format. (' + e.message + ')');
+                showToast('Decoding error: Please check your Base64 string format. (' + e.message + ')', 'error', undefined);
                 iframe.src = 'about:blank';
                 previewArea.style.display = 'none';
             }
@@ -371,11 +407,7 @@
         document.getElementById('resetBtn').addEventListener('click', function() {
             // Clear textarea value
             rawInput.value = '';
-            
-            // Hide and wipe error messages
-            errorMsg.style.display = 'none';
-            errorMsg.innerText = '';
-            
+        
             // Reset iframe view back to blank page
             iframe.src = 'about:blank';
             previewArea.style.display = 'none';
@@ -384,17 +416,60 @@
             clearBlob();
         });
 
-        function showError(msg) {
-            errorMsg.innerText = msg;
-            errorMsg.style.display = 'block';
-        }
-
         function clearBlob() {
             if (currentBlobUrl) {
                 URL.revokeObjectURL(currentBlobUrl);
                 currentBlobUrl = null;
             }
         }
+
+        // -------------------------------------------------------------
+        // TOAST
+        // -------------------------------------------------------------
+
+        let toastTimeout;
+
+        /**
+         * @param {string} message - Der anzuzeigende Text.
+         * @param {string} type - Der Typ ('success', 'error', 'info'). Bestimmt die Farbe.
+         * @param {number} duration - Wie lange der Toast sichtbar bleibt (in ms). Standard: 3000ms.
+         * @returns {Promise} Wird aufgelöst, sobald der Toast ausgeblendet wurde.
+         */
+        function showToast(message, type = 'info', duration = 3000) {
+            return new Promise((resolve) => {
+                const toast = document.getElementById('toastContainer');
+                if (!toast) {
+                    resolve(); // Sofort auflösen, falls das Element nicht existiert
+                    return;
+                }
+
+                // Vorherige Timeouts löschen, falls schnell hintereinander Toasts gefeuert werden
+                clearTimeout(toastTimeout);
+
+                // Text setzen
+                toast.innerText = message;
+
+                // Hintergrundfarbe basierend auf dem Typ definieren
+                let backgroundColor = '#e3e3e8'; // Standard: Dunkelgrau (info)
+                // if (type === 'success') backgroundColor = '#34c759'; // Apple-Grün
+                if (type === 'success') backgroundColor = '#d1f2d1';
+                if (type === 'error') backgroundColor = '#fdcccc';
+
+                toast.style.backgroundColor = backgroundColor;
+                
+                // Toast anzeigen und Animation starten
+                toast.style.display = 'block';
+                toast.classList.add('toast-show');
+
+                // Nach Ablauf der Dauer den Toast ausblenden und das Promise auflösen
+                toastTimeout = setTimeout(() => {
+                    toast.style.display = 'none';
+                    toast.classList.remove('toast-show');
+                    resolve(); // Hier wird signalisiert, dass der Toast fertig ist!
+                }, duration);
+            });
+        }
+
     </script>
 </body>
 </html>
