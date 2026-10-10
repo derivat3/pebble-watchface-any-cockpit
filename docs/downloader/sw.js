@@ -1,5 +1,5 @@
 // update version to invalidate cache and to trigger PWA update 
-const CACHE_NAME = 'string-receiver-v3';
+const CACHE_NAME = 'string-receiver-v4';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

@@ -259,6 +259,11 @@
              // Listen to Service Worker Update Message
             navigator.serviceWorker.addEventListener('message', (event) => {
                 if (event.data && event.data.type === 'MSG_VERSION_UPDATED') {
+                    const rawInputString = document.getElementById('rawInput');
+                    if (rawInputString && rawInputString.value !== "") {
+                        return;
+                    }
+                    
                     console.log('Neue App-Version erkannt! Lade neu...');
                     // Generischen Toast aufrufen
                     showToast('New version available! Reloading...', 'info', undefined).then(() => {
@@ -313,7 +318,7 @@
                         // Automatisch den Render-Prozess anstoßen
                         document.getElementById('renderBtn').click();
 
-                        showToast('✓ Data received and Link generated', 'success', undefined);
+                        showToast('✓ Shared Data received!', 'success', undefined);
                     } else {
                         console.log('No shared data found in storage.');
                     }
@@ -399,9 +404,10 @@
 
                 // Make the entire preview section visible now that content is successfully ready to display
                 previewArea.style.display = 'block';
-
+                showToast('✓ Download Link generated!', 'success', undefined);
             } catch (e) {
-                showToast('Decoding error: Please check your Base64 string format. (' + e.message + ')', 'error', undefined);
+                console.errror('Decoding error: Please check your Base64 string format. (' + e.message + ')');
+                showToast('Decoding error: Check your Base64 format.', 'error', undefined);
                 iframe.src = 'about:blank';
                 previewArea.style.display = 'none';
             }
@@ -439,7 +445,7 @@
          * @param {number} duration - Wie lange der Toast sichtbar bleibt (in ms). Standard: 3000ms.
          * @returns {Promise} Wird aufgelöst, sobald der Toast ausgeblendet wurde.
          */
-        function showToast(message, type = 'info', duration = 3000) {
+        function showToast(message, type = 'info', duration = 5000) {
             return new Promise((resolve) => {
                 const toast = document.getElementById('toastContainer');
                 if (!toast) {
