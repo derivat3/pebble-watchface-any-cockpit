@@ -137,7 +137,6 @@
             top: 54px;
             left: 50%;
             transform: translateX(-50%);
-            /* color: #ffffff; */
             padding: 12px 24px;
             border-radius: 30px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -316,9 +315,7 @@
                         window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
 
                         // Automatisch den Render-Prozess anstoßen
-                        document.getElementById('renderBtn').click();
-
-                        showToast('✓ Shared Data received!', 'success', undefined);
+                        createDownloadLink('shareHandler');
                     } else {
                         console.log('No shared data found in storage.');
                     }
@@ -343,6 +340,10 @@
 
         // EVENT LISTENER: RENDER BUTTON
         document.getElementById('renderBtn').addEventListener('click', function() {
+            createDownloadLink();
+        });
+
+        function createDownloadLink(handler = 'buttonClick') {
             const input = rawInput.value.trim();
             
             // Reset hidden state
@@ -356,8 +357,6 @@
                 renderInvalidInputError();
                 return;
             }
-
-
 
             try {
                 let htmlContent = '';
@@ -404,14 +403,23 @@
 
                 // Make the entire preview section visible now that content is successfully ready to display
                 previewArea.style.display = 'block';
-                showToast('✓ Download Link generated!', 'success', undefined);
+
+                const toastMessages = {
+                    "buttonClick": '✓ Download Link generated!',
+                    "shareHandler": '✓ Shared Data received and Download Link generated!'
+                };
+
+                if (toastMessages[handler]) {
+                    showToast(toastMessages[handler], 'success', undefined);
+                }
+                
             } catch (e) {
                 console.errror('Decoding error: Please check your Base64 string format. (' + e.message + ')');
                 showToast('Decoding error: Check your Base64 format.', 'error', undefined);
                 iframe.src = 'about:blank';
                 previewArea.style.display = 'none';
             }
-        });
+        };
 
         // EVENT LISTENER: RESET BUTTON
         document.getElementById('resetBtn').addEventListener('click', function() {
