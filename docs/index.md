@@ -4,7 +4,7 @@ Highly configurable analog watchface, which solves the problem of scheduling in 
 With a connected Google Calendar, you will see upcoming appointments directly on your wrist and, if you wish, you will be notified on time.
 
 With __Any Cockpit__ you get the possibility to fetch data via GET Requests and display them as dashboard elements on your watchface.
-And because the possibilities of your customized watchface increased so much, it also offer a way to backup and restore your watchface settings.
+And because the possibilities of your customized watchface increased so much, it also offers a way to backup and restore your watchface settings.
 
 And ... even without a linked calendar or smart dashboards, the clock is just fun. You can create and save up to ten personal clock faces. 
 And if it has to go fast, the random clock face generator will help you in this case!
@@ -40,7 +40,7 @@ And if it has to go fast, the random clock face generator will help you in this 
 
 # Motivation
 
-I love each of my Pebbles over all 🙂 and because there are many enthusiast developer keeping the pebble smartwatch and the ecosystem a live I try to fulfill a small dream of me.
+I love each of my Pebbles over all 🙂 and because there are many enthusiast developer keeping the pebble smartwatch and the ecosystem alive I try to fulfill a small dream of me.
 
 For a long time I had the vision of a flexible watch face that can be adapted to a wide variety of needs. It should help in work as well as in everyday life but should also be able to cover other areas. The idea: Different watch faces for different purposes that can be saved, exported and shared.
 
