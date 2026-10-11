@@ -399,16 +399,6 @@
           try {
             const largeString = await getFromIndexedDB();
 
-            const cache = await caches.open('shared-data');
-            const cacheResponse = await cache.match('/shared-text-store');
-            const cacheText = cacheResponse ? await cacheResponse.text() : "";
-
-            if (cacheText.length !== largeString.length) {
-              showToast("Shared string has not the correct lenght of " + largeString.length + "chars", "error", 10000);
-            } else {
-              showToast("Shared string hasthe lenght of " + largeString.length + "chars", "info", 10000);
-            }
-
             if (largeString) {
               // Insert the received string into the text field
               rawInput.value = largeString;
@@ -419,7 +409,7 @@
               window.history.replaceState({ path: cleanUrl }, "", cleanUrl);
 
               // Automatically trigger the rendering process
-              createDownloadLink("nothing");
+              createDownloadLink("shareHandler");
             } else {
               console.log("No shared data found in storage.");
             }

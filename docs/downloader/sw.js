@@ -1,5 +1,5 @@
 // Update version to invalidate cache and trigger PWA update
-const CACHE_NAME = "string-receiver-v3";
+const CACHE_NAME = "string-receiver-v4";
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();
@@ -43,16 +43,6 @@ function saveToIndexedDB(text) {
   });
 }
 
-async function saveToCache(text) {
-  try {
-    const cache = await caches.open('shared-data');
-    await cache.put('/shared-text-store', new Response(text));
-  } catch(e) {
-    // Fehler wird automatisch weitergereicht oder hier abgefangen
-    throw e; 
-  }
-}
-
 // Intercepting Share Requests (optimized for subfolders)
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
@@ -71,7 +61,6 @@ self.addEventListener("fetch", (event) => {
           const finalLongText = [sharedText, sharedTitle, sharedUrl].reduce((a, b) => a.length > b.length ? a : b);
 
           await saveToIndexedDB(finalLongText);
-          await saveToCache(finalLongText);
 
           // Replaces only the end of the URL to keep /downloader/
           const redirectUrl = event.request.url.replace("incoming-share", "?shared=true");
