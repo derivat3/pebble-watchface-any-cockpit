@@ -111,7 +111,7 @@
         text-indent: 50px;
         display: inline-block;
         background-color: #fff;
-        color: #333;        
+        color: #333;
         background-blend-mode: difference;
         box-shadow: 2px 2px 0 0 black;
       }
@@ -204,6 +204,12 @@
         border-right: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
       }
+      #paste-btn {
+        float: right;
+        transform: rotate(180deg);
+        height: 44px;
+        width: 44px;
+      }
     </style>
   </head>
   <body>
@@ -212,7 +218,7 @@
     </header>
 
     <main>
-      <h2>Export String</h2>
+      <h2>Export String <button id="paste-btn" title="Paste from Clipboard">⇪</button></h2>
       <p style="font-size: 14px; color: #666">Possible Export Types: HTML File, SVG File and JSON File</p>
 
       <textarea id="rawInput" placeholder="data:text/html;utf8,..."></textarea>
@@ -251,6 +257,19 @@
     <div id="toastContainer"></div>
 
     <script>
+      // -------------------------------------------------------------
+      // Past from Clipboard
+      // -------------------------------------------------------------
+
+      document.getElementById("paste-btn").addEventListener("click", async () => {
+        try {
+          const clipboardText = await navigator.clipboard.readText();
+          document.getElementById("rawInput").value = clipboardText;
+        } catch (err) {
+          console.error("Fehler beim Lesen der Zwischenablage:", err);
+        }
+      });
+
       // -------------------------------------------------------------
       // PWA install Button
       // -------------------------------------------------------------
