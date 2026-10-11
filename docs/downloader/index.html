@@ -507,7 +507,7 @@
           // css rule
           style.textContent = `
             h1 {
-              font-size: clamp(18px, 3vw, 30px);
+              font-size: clamp(18px, 3vw, 30px) !important;
             }
             h1 + hr {
               margin-top: 0;
@@ -516,6 +516,7 @@
               margin-top: -100px;
             }
           `;
+          iframeDoc.head.appendChild(style);
           const element = iframeDoc.querySelector('a');
           
           if (element) {
