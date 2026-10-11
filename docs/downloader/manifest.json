@@ -14,10 +14,11 @@
   "share_target": {
     "action": "incoming-share",
     "method": "POST",
-    "enctype": "application/x-www-form-urlencoded",
+    "enctype": "multipart/form-data",
     "params": {
       "title": "title",
-      "text": "text"
+      "text": "text",
+      "url": "url"
     }
   }
 }

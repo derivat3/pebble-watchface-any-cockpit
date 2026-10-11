@@ -1,5 +1,5 @@
 // Update version to invalidate cache and trigger PWA update
-const CACHE_NAME = "string-receiver-v6";
+const CACHE_NAME = "string-receiver-v7";
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();
@@ -52,9 +52,15 @@ self.addEventListener("fetch", (event) => {
       (async () => {
         try {
           const formData = await event.request.formData();
-          const sharedText = formData.get("text") || formData.get("title") || "";
 
-          await saveToIndexedDB(sharedText);
+          const sharedTitle = formData.get('title') || '';
+          const sharedText = formData.get('text') || '';
+          const sharedUrl = formData.get('url') || '';
+
+          // Directly finds the field with the most characters
+          const finalLongText = [sharedText, sharedTitle, sharedUrl].reduce((a, b) => a.length > b.length ? a : b);
+
+          await saveToIndexedDB(finalLongText);
 
           // Replaces only the end of the URL to keep /downloader/
           const redirectUrl = event.request.url.replace("incoming-share", "?shared=true");
