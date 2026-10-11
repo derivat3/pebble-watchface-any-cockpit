@@ -93,11 +93,17 @@
       #resetBtn:hover {
         background-color: #d1d1d6;
       }
+      .output-container {
+        overflow: hidden;
+      }
       iframe {
-        width: 100%;
+        width: 200%;
         height: 400px;
         border: none;
         display: block;
+        scale: 0.5;
+        margin-top: -40%;
+        margin-left: -50%;
       }
       #pwaInstallWrapper {
         display: none;
@@ -490,44 +496,14 @@
           // Make the entire preview section visible now that content is successfully ready to display
           previewArea.style.display = "block";
 
-          const toastSuccessMessages = {
+          const toastMessages = {
             buttonClick: "✓ Download Link generated!",
             shareHandler: "✓ Shared Data received and Download Link generated!",
           };
 
-          const toastErrorMessages = {
-            shareHandler: rawInput.length > 100000 ? "Share text length limit reached! Please reset and paste text manually from clipboard." : "Decoding error! Please Check your input format.",
-            buttonClick: "Decoding error! Please Check your input format.",
-          };
-
-          // Check iframe content and trigger toast
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-          // iframe style
-          const style = iframeDoc.createElement('style');
-          // css rule
-          style.textContent = `
-            h1 {
-              font-size: clamp(18px, 3vw, 30px);
-            }
-            h1 + hr {
-              margin-top: 0;
-            }
-            hr {
-              margin-top: -100px;
-            }
-          `;
-          const element = iframeDoc.querySelector('a');
-          
-          if (element) {
-            if (toastSuccessMessages[handler]) {
-              showToast(toastSuccessMessages[handler], "success", undefined);
-            }
-          } else {
-            if (toastErrorMessages[handler]) {
-              showToast(toastErrorMessages[handler], "error", 5000);
-            }
+          if (toastMessages[handler]) {
+            showToast(toastMessages[handler], "success", undefined);
           }
-
         } catch (e) {
           console.errror("Decoding error: Please check your Base64 string format. (" + e.message + ")");
           showToast("Decoding error: Check your Base64 format.", "error", undefined);
