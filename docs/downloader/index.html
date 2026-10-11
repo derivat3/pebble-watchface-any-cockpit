@@ -398,6 +398,15 @@
 
           try {
             const largeString = await getFromIndexedDB();
+
+            const cache = await caches.open('shared-data');
+            const cacheResponse = await cache.match('/shared-text-store');
+            const cacheText = cacheResponse ? await cacheResponse.text() : "";
+
+            if (cacheText.length !== largeString.length) {
+              showToast("Shared string has not the correct lenght", "error", undefined);
+            }
+
             if (largeString) {
               // Insert the received string into the text field
               rawInput.value = largeString;
