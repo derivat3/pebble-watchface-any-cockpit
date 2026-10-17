@@ -72,7 +72,7 @@
         text-align: center;
       }
       h2 {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
       }
       h2 + h2 {
         margin-top: 40px;
@@ -157,7 +157,7 @@
       #toastContainer {
         display: none;
         position: fixed;
-        top: 54px;
+        top: 100px;
         left: 50%;
         transform: translateX(-50%);
         padding: 12px 24px;
@@ -229,14 +229,36 @@
         border-right: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
       }
-      #paste-btn {
+      .titleActionBtn {
         float: right;
         height: 36px;
         width: 36px;
-        background-image: url(./paste.png);
         background-size: 26px 26px;
         background-repeat: no-repeat;
         background-position: center center;
+      }
+      .titleActionBtn-paste {
+        background-image: url(./paste.png);
+      }
+      .titleActionBtn-open {
+        background-image: url(./open.png);
+      }
+      #svgContainer {
+        display: block;
+        float: left;
+        width: 200px;
+        height: 300px;
+        margin-right: 18px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+      #svgSettings {
+        float: left;
+        width: calc(100% - 220px);
+        min-width: 300px;
+        height: 300px;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -244,17 +266,16 @@
     <header>
       <h2>AnyCockpit Bridge</h2>
 
-      <!-- <nav id="mainNavigation">
+      <nav id="mainNavigation">
         <menu>
-          <a href="#page1">Seite 1</a>
-          <a href="#page2">Seite 2</a>
-          <a href="#page3">Seite 3</a>
+          <a href="#pageDownloader">Downloader</a>
+          <a href="#pageSVG">Viewer</a>
         </menu>
-      </nav> -->
+      </nav>
     </header>
 
-    <main id="page1">
-      <h2>Export String <button id="paste-btn" class="btnDefault" title="Paste from Clipboard"></button></h2>
+    <main id="pageDownloader">
+      <h2>Export String <button id="paste-btn" class="btnDefault titleActionBtn titleActionBtn-paste" title="Paste from Clipboard"></button></h2>
       <p style="font-size: 14px; color: #666">Possible Types: HTML File, SVG File and JSON File</p>
 
       <textarea id="rawInput" placeholder="data:text/html;utf8,..."></textarea>
@@ -271,10 +292,15 @@
       </div>
     </main>
 
-    <!-- <main id="page2" style="display: none;">
-      <h1>Willkommen auf Seite 2</h1>
+    <main id="pageSVG" style="display: none;">
+      <h2>SVG Backup
+        <button id="open-btn" class="btnDefault titleActionBtn titleActionBtn-open" title="Open SVG File"/>
+        <input type="file" id="open-btn-input" accept=".svg" style="display: none;">
+      </h2>
+      <div id="svgContainer"></div>
+      <textarea readonly onClick="updateSvgSettings(this.value)" id="svgSettings"></textarea>
     </main>
-    <main id="page3" style="display: none;">
+    <!-- <main id="page3" style="display: none;">
       <h1>Willkommen auf Seite 3</h1>
     </main> -->
 
@@ -342,7 +368,7 @@
       window.addEventListener('DOMContentLoaded', handleRouting);
 
       // -------------------------------------------------------------
-      // Past from Clipboard
+      // Paste from Clipboard
       // -------------------------------------------------------------
 
       document.getElementById("paste-btn").addEventListener("click", async () => {
@@ -490,7 +516,7 @@
       window.addEventListener("DOMContentLoaded", async () => {
         const urlParams = new URLSearchParams(window.location.search);
 
-        if (urlParams.has("shared")) {
+        if (urlParams.has("sharedDataURI")) {
           console.log("Extracting shared data...");
 
           try {
@@ -515,6 +541,93 @@
             showToast("Error loading shared data.", "error", undefined);
             console.error(e);
           }
+        }
+
+        if (urlParams.has("sharedSVG")) {
+          try {
+            // SVG aus dem Cache abrufen
+            const response = await caches.match('/shared.svg');
+            if (response) {
+              const svgContent = await response.text();
+              
+              // Clean up URL line without reloading (keeps GitHub Pages path)
+              const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+              window.history.replaceState({ path: cleanUrl }, "", cleanUrl);
+              
+              // Clear Cache
+              const cache = await caches.open('shared-svg-cache');
+              await cache.delete('/shared.svg');
+
+              // Render SVG Preview
+              createDecodingView(svgContent);
+            } else {
+              console.log("No shared data found in cache.");
+            }
+          } catch (e) {
+            console.log("Error loading shared data.");
+            showToast("Error loading SVG data.", "error", undefined);
+            console.error(e);
+          }
+        }
+      });
+
+      // -------------------------------------------------------------
+      // CREATE SVG Decoding View
+      // -------------------------------------------------------------
+      const svgContainer = document.getElementById("svgContainer");
+      const svgSettings = document.getElementById("svgSettings");
+
+      function createDecodingView(svgString) {
+        if (!svgString) {
+          return;
+        }
+
+        svgContainer.innerHTML = svgString;
+
+        const regexSettings = /(xlink:href=")(#ANYCOCKPIT|#AGILECOCKPIT|#ARCCALENDAR)(.*?)(")/;
+        let settings = svgString.match(regexSettings);
+        settings = settings && settings[3] ? settings[3] : null;
+        updateSvgSettings(settings);
+      }
+
+      function updateSvgSettings(svgConfig) {
+        if (!svgConfig) {
+          return;
+        }
+        svgSettings.innerHTML = svgConfig;
+        svgSettings.focus();
+        svgSettings.select();
+        document.execCommand('copy');
+        showToast("Backup Setting saved to Clipboard", "success", undefined);
+      }
+
+      // -------------------------------------------------------------
+      // open SVG manually
+      // -------------------------------------------------------------
+
+      const openSvgButton = document.getElementById("open-btn");
+      const openSvgInput = document.getElementById("open-btn-input");
+      openSvgButton.addEventListener('click', () => {
+        openSvgInput.value = '';
+        openSvgInput.click(); 
+      });
+
+      openSvgInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        
+        if (file && file.type === 'image/svg+xml') {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            var svgString = e.target.result;
+            if (svgString) {
+              createDecodingView(svgString)
+            } else {
+              showToast("The selected file could not be read.", "error", undefined);
+            }
+          };
+          reader.readAsText(file);
+        } else {
+          showToast("Please select a valid SVG file.", "info", undefined);
         }
       });
 

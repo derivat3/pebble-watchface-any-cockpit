@@ -53,18 +53,49 @@ self.addEventListener("fetch", (event) => {
         try {
           const formData = await event.request.formData();
 
+          // Export Download Data URI
           const sharedTitle = formData.get('title') || '';
           const sharedText = formData.get('text') || '';
           const sharedUrl = formData.get('url') || '';
 
-          // Directly finds the field with the most characters
-          const finalLongText = [sharedText, sharedTitle, sharedUrl].reduce((a, b) => a.length > b.length ? a : b);
+          // Decode SVG Backup File
+          const file = formData.get('shared_svg');
 
-          await saveToIndexedDB(finalLongText);
+          
+          if (file && file.type === 'image/svg+xml') {
 
-          // Replaces only the end of the URL to keep /bridge/
-          const redirectUrl = event.request.url.replace("incoming-share", "?shared=true");
-          return Response.redirect(redirectUrl, 303);
+            // -------------------------------------------------------------
+            // CASE 1: SVG Backup File
+            // -------------------------------------------------------------
+
+            // read SVG as text
+            const svgText = await file.text();
+
+            // temporarily store image in Cache
+            const cache = await caches.open('shared-svg-cache');
+            await cache.put('/shared.svg', new Response(svgText, {
+              headers: { 'Content-Type': 'image/svg+xml' }
+            }));
+            
+            // Replaces only the end of the URL to keep /bridge/
+            // #pageSVG?sharedSVG=true
+            const redirectUrl = event.request.url.replace("incoming-share", "?sharedSVG=true#pageSVG");
+            return Response.redirect(redirectUrl, 303);
+          } else {
+
+            // -------------------------------------------------------------
+            // CASE 2: Export Download Data URI
+            // -------------------------------------------------------------
+            
+            // Directly finds the field with the most characters
+            const finalLongText = [sharedText, sharedTitle, sharedUrl].reduce((a, b) => a.length > b.length ? a : b);
+
+            await saveToIndexedDB(finalLongText);
+
+            // Replaces only the end of the URL to keep /bridge/
+            const redirectUrl = event.request.url.replace("incoming-share", "?sharedDataURI=true");
+            return Response.redirect(redirectUrl, 303);
+          }          
         } catch (error) {
           console.error("Error processing shared string:", error);
           const errorUrl = event.request.url.replace("incoming-share", "?error=share-failed");
