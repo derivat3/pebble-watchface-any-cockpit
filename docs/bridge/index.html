@@ -7,7 +7,7 @@
     <link rel="manifest" href="manifest.json" />
     <style>
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
         background-color: #f5f5f7;
         color: #333;
         margin: 0;
@@ -17,8 +17,8 @@
         margin: 0;
         z-index: 1;
         top: 0;
-        background-color: #333;
-        box-shadow: 0 -1px 0 0 #333;
+        background-color: #222;
+        box-shadow: 0 -1px 0 0 #222;
         color: #fff;
       }
       header h2 {
@@ -31,6 +31,31 @@
         background-size: 40px;
         background-position: 20px center;
         text-indent: 50px;
+      }
+      #mainNavigation {
+        background-color: #333;
+      }
+      #mainNavigation menu {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0;
+        font-size: 0;
+      }
+
+      #mainNavigation menu a {
+        color: #fff !important;
+        display: inline-block;
+        font-size: initial;
+        font-weight: lighter;
+        padding: 10px 20px;
+        text-decoration: none;
+        transition: background-color 0.2s;
+      }
+      #mainNavigation menu a + a {
+        border-left: 1px solid rgba(255,255,255,.2);
+      }
+      #mainNavigation menu a:hover, #mainNavigation menu a.pageActive  {
+        background-color: #222;
       }
       main {
         padding: 20px;
@@ -78,19 +103,19 @@
         cursor: pointer;
         transition: background-color 0.2s;
       }
-      #renderBtn {
+      .btnSuccess {
         background-color: #2e9b49;
         color: white;
         flex: 2;
       }
-      #renderBtn:hover {
+      .btnSuccess:hover {
         background-color: #1d8837;
       }
-      #resetBtn {
+      .btnDefault {
         background-color: #e3e3e8;
         color: #333;
       }
-      #resetBtn:hover {
+      .btnDefault:hover {
         background-color: #d1d1d6;
       }
       iframe {
@@ -206,26 +231,37 @@
       }
       #paste-btn {
         float: right;
-        transform: rotate(180deg);
-        height: 44px;
-        width: 44px;
+        height: 36px;
+        width: 36px;
+        background-image: url(./paste.png);
+        background-size: 26px 26px;
+        background-repeat: no-repeat;
+        background-position: center center;
       }
     </style>
   </head>
   <body>
     <header>
       <h2>AnyCockpit Bridge</h2>
+
+      <!-- <nav id="mainNavigation">
+        <menu>
+          <a href="#page1">Seite 1</a>
+          <a href="#page2">Seite 2</a>
+          <a href="#page3">Seite 3</a>
+        </menu>
+      </nav> -->
     </header>
 
-    <main>
-      <h2>Export String <button id="paste-btn" title="Paste from Clipboard">⇪</button></h2>
-      <p style="font-size: 14px; color: #666">Possible Export Types: HTML File, SVG File and JSON File</p>
+    <main id="page1">
+      <h2>Export String <button id="paste-btn" class="btnDefault" title="Paste from Clipboard"></button></h2>
+      <p style="font-size: 14px; color: #666">Possible Types: HTML File, SVG File and JSON File</p>
 
       <textarea id="rawInput" placeholder="data:text/html;utf8,..."></textarea>
 
       <div class="button-group">
-        <button id="renderBtn">Generate Download Link</button>
-        <button id="resetBtn">Reset</button>
+        <button id="renderBtn" class="btnSuccess">Generate Download Link</button>
+        <button id="resetBtn" class="btnDefault">Reset</button>
       </div>
 
       <div id="previewArea" style="display: none">
@@ -234,6 +270,13 @@
         </div>
       </div>
     </main>
+
+    <!-- <main id="page2" style="display: none;">
+      <h1>Willkommen auf Seite 2</h1>
+    </main>
+    <main id="page3" style="display: none;">
+      <h1>Willkommen auf Seite 3</h1>
+    </main> -->
 
     <footer>
       <div id="pwaInstallWrapper">
@@ -257,6 +300,47 @@
     <div id="toastContainer"></div>
 
     <script>
+      // -------------------------------------------------------------
+      // Page Routing
+      // -------------------------------------------------------------
+
+      function handleRouting() {
+        const currentHash = window.location.hash;
+        
+        // select all relevant Pages
+        const pages = document.querySelectorAll('main[id^="page"]');
+        if (pages.length === 0) return;
+        
+        // handle fallback if hash does not map any page
+        let activePageId = pages[0].id;
+        if (currentHash && document.querySelector(currentHash)) {
+          activePageId = currentHash.replace('#', '');
+        }
+
+        // handle visibilty of all pages
+        pages.forEach(page => {
+          if (page.id === activePageId) {
+            page.style.display = 'block';
+          } else {
+            page.style.display = 'none';
+          }
+        });
+
+        // 2. Active-Klasse für die Navigations-Links setzen
+        const navLinks = document.querySelectorAll('#mainNavigation a');
+        navLinks.forEach(link => {
+          // Prüft, ob das href-Attribut mit dem Hash der aktiven Seite übereinstimmt (z.B. "#page1")
+          if (link.getAttribute('href') === `#${activePageId}`) {
+            link.classList.add('pageActive');
+          } else {
+            link.classList.remove('pageActive');
+          }
+        });
+      }
+
+      window.addEventListener('hashchange', handleRouting);
+      window.addEventListener('DOMContentLoaded', handleRouting);
+
       // -------------------------------------------------------------
       // Past from Clipboard
       // -------------------------------------------------------------
