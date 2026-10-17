@@ -1,5 +1,5 @@
 {
-  "name": "AnyCockpit Downloader",
+  "name": "AnyCockpit Bridge",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",

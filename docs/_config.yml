@@ -2,4 +2,4 @@ theme: jekyll-theme-cayman
 title: Any Cockpit
 description: Highly configurable watchface, which solves the problem of scheduling in daily business.
 include:
-  - downloader/
+  - bridge/

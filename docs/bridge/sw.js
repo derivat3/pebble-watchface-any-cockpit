@@ -62,7 +62,7 @@ self.addEventListener("fetch", (event) => {
 
           await saveToIndexedDB(finalLongText);
 
-          // Replaces only the end of the URL to keep /downloader/
+          // Replaces only the end of the URL to keep /bridge/
           const redirectUrl = event.request.url.replace("incoming-share", "?shared=true");
           return Response.redirect(redirectUrl, 303);
         } catch (error) {
