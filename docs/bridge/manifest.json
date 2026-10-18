@@ -22,7 +22,12 @@
       "files": [
         {
           "name": "shared_svg",
-          "accept": ["image/svg+xml", ".svg"]
+          "accept": [
+            "image/svg+xml",
+            "text/xml",
+            "application/xml",
+            ".svg"
+          ]
         }
       ]
     }
