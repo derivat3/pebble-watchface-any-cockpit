@@ -250,8 +250,13 @@
         height: 300px;
         margin-right: 18px;
         margin-bottom: 20px;
-        border: 1px solid #ccc;
         border-radius: 8px;
+        background-image: url(./open.png);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 70%;
+        background-color: rgba(255, 255, 255, 0.95);
+        background-blend-mode: lighten;
       }
       #svgSettings {
         float: left;
@@ -298,7 +303,7 @@
         <input type="file" id="open-btn-input" accept=".svg, image/svg+xml, text/xml, application/xml" style="display: none;">
       </h2>
       <div id="svgContainer"></div>
-      <textarea readonly onClick="updateSvgSettings(this.value)" id="svgSettings"></textarea>
+      <textarea readonly onClick="updateSvgSettings(this.value)" id="svgSettings" style="display: none;"></textarea>
     </main>
     <!-- <main id="page3" style="display: none;">
       <h1>Willkommen auf Seite 3</h1>
@@ -590,15 +595,20 @@
         updateSvgSettings(settings);
       }
 
-      function updateSvgSettings(svgConfig) {
+      async function updateSvgSettings(svgConfig) {
         if (!svgConfig) {
           return;
         }
+        svgSettings.style.display = "block";
         svgSettings.innerHTML = svgConfig;
         svgSettings.focus();
         svgSettings.select();
-        document.execCommand('copy');
-        showToast("Backup Setting saved to Clipboard", "success", undefined);
+        try {
+          await navigator.clipboard.writeText(svgConfig);
+          showToast("Backup Setting saved to Clipboard", "success", undefined);
+        } catch (err) {
+          showToast("Unable to copy Backup Settings to Clipboard", "error", undefined);
+        }        
       }
 
       // -------------------------------------------------------------
