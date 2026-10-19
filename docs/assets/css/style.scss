@@ -16,6 +16,10 @@
   @include clearfix;
 }
 
+html, body {
+  background-color: #fff;
+}
+
 .ac-page-header {
   // background-image: url(../img/header.png);
   // height: 350px;
@@ -52,6 +56,8 @@
     padding-bottom: 0;
     @include clearfix;
     .ac-btn-nav {
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+      font-weight: lighter; 
       text-decoration: none;
       float: left;
       color: #fff;
