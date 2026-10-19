@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.5 - 2026-10-19
+**Improve Backup Workflow**
+- Introduce New AnyCockpit Bridge PWA
+- Optimize Export Workflow using PWA
+- Bugfixes relating to backup files
+
 ## v4.4 - 2024-01-13
 **Improvement and Bugfix**
 - Support the new Google Calendar ID length
