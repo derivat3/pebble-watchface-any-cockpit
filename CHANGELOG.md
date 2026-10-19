@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.6 - 2026-10-20
+**Improvement and Bugfix**
+- Bugfix related to HTML backup files
+
 ## v4.5 - 2026-10-19
 **Improve Backup Workflow**
 - Introduce New AnyCockpit Bridge PWA
