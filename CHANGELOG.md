@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.7 - 2026-10-20
+**Bugfix**
+- Bugfix of incomplete dashboard displays
+
 ## v4.6 - 2026-10-20
 **Improvement and Bugfix**
 - Bugfix related to HTML backup files
