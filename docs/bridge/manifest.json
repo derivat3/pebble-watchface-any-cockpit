@@ -21,8 +21,11 @@
       "url": "url",
       "files": [
         {
-          "name": "shared_svg",
+          "name": "shared_xml",
           "accept": [
+            "text/html",
+            ".htm",
+            ".html",
             "image/svg+xml",
             "text/xml",
             "application/xml",
