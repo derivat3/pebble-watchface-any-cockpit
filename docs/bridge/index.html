@@ -77,6 +77,10 @@
       h2 + h2 {
         margin-top: 40px;
       }
+      .subTitle { 
+        font-size: 14px; 
+        color: #666;
+      }
       textarea {
         width: 100%;
         height: 100px;
@@ -243,7 +247,7 @@
       .titleActionBtn-open {
         background-image: url(./open.png);
       }
-      #svgContainer {
+      #markuplContainer {
         display: block;
         float: left;
         width: 200px;
@@ -258,7 +262,7 @@
         background-color: rgba(255, 255, 255, 0.95);
         background-blend-mode: lighten;
       }
-      #svgSettings {
+      #backupSettings {
         float: left;
         width: calc(100% - 220px);
         min-width: 300px;
@@ -274,14 +278,14 @@
       <nav id="mainNavigation">
         <menu>
           <a href="#pageDownloader">Downloader</a>
-          <a href="#pageSVG">Viewer</a>
+          <a href="#pageView">Viewer</a>
         </menu>
       </nav>
     </header>
 
     <main id="pageDownloader">
       <h2>Export String <button id="paste-btn" class="btnDefault titleActionBtn titleActionBtn-paste" title="Paste from Clipboard"></button></h2>
-      <p style="font-size: 14px; color: #666">Possible Types: HTML File, SVG File and JSON File</p>
+      <p class="subTitle">Possible Types: HTML File, SVG File and JSON File</p>
 
       <textarea id="rawInput" placeholder="data:text/html;utf8,..."></textarea>
 
@@ -297,17 +301,15 @@
       </div>
     </main>
 
-    <main id="pageSVG" style="display: none;">
-      <h2>SVG Backup
-        <button id="open-btn" class="btnDefault titleActionBtn titleActionBtn-open" title="Open SVG File"/>
-        <input type="file" id="open-btn-input" accept=".svg, image/svg+xml, text/xml, application/xml" style="display: none;">
+    <main id="pageView" style="display: none;">
+      <h2>Backup File
+        <button id="open-btn" class="btnDefault titleActionBtn titleActionBtn-open" title="Open Backup File"/>
+        <input type="file" id="open-btn-input" accept=".html, .htm, text/html, .svg, image/svg+xml, text/xml, application/xml" style="display: none;">
       </h2>
-      <div id="svgContainer"></div>
-      <textarea readonly onClick="updateSvgSettings(this.value)" id="svgSettings" style="display: none;"></textarea>
+      <p class="subTitle">Possible Types: HTML File, SVG File</p>
+      <iframe id="markuplContainer" src="about:blank"></iframe>
+      <textarea readonly onClick="updateBackupSettings(this.value)" id="backupSettings" style="display: none;"></textarea>
     </main>
-    <!-- <main id="page3" style="display: none;">
-      <h1>Willkommen auf Seite 3</h1>
-    </main> -->
 
     <footer>
       <div id="pwaInstallWrapper">
@@ -357,10 +359,10 @@
           }
         });
 
-        // 2. Active-Klasse für die Navigations-Links setzen
+        // 2. Add active class to navigation links
         const navLinks = document.querySelectorAll('#mainNavigation a');
         navLinks.forEach(link => {
-          // Prüft, ob das href-Attribut mit dem Hash der aktiven Seite übereinstimmt (z.B. "#page1")
+          // Checks if the href attribute matches the active page's hash
           if (link.getAttribute('href') === `#${activePageId}`) {
             link.classList.add('pageActive');
           } else {
@@ -548,63 +550,83 @@
           }
         }
 
-        if (urlParams.has("sharedSVG")) {
+        if (urlParams.has("sharedXML")) {
           try {
-            // SVG aus dem Cache abrufen
-            const response = await caches.match('/shared.svg');
+            // Retrieve xml from cache
+            const response = await caches.match('/shared.xml');
             if (response) {
-              const svgContent = await response.text();
+              const markupContent = await response.text();
               
               // Clean up URL line without reloading (keeps GitHub Pages path)
               const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
               window.history.replaceState({ path: cleanUrl }, "", cleanUrl);
               
               // Clear Cache
-              const cache = await caches.open('shared-svg-cache');
-              await cache.delete('/shared.svg');
+              const cache = await caches.open('shared-xml-cache');
+              await cache.delete('/shared.xml');
 
-              // Render SVG Preview
-              createDecodingView(svgContent);
+              // Render Backup Preview
+              createDecodingView(markupContent);
             } else {
               console.log("No shared data found in cache.");
             }
           } catch (e) {
             console.log("Error loading shared data.");
-            showToast("Error loading SVG data.", "error", undefined);
+            showToast("Error loading shared data.", "error", undefined);
             console.error(e);
           }
         }
       });
 
       // -------------------------------------------------------------
-      // CREATE SVG Decoding View
+      // CREATE Backup Decoding View
       // -------------------------------------------------------------
-      const svgContainer = document.getElementById("svgContainer");
-      const svgSettings = document.getElementById("svgSettings");
-
-      function createDecodingView(svgString) {
-        if (!svgString) {
+      const markuplContainer = document.getElementById("markuplContainer");
+      const backupSettings = document.getElementById("backupSettings");
+      markuplContainer.src = "about:blank";
+      
+      function createDecodingView(markupString) {
+        if (!markupString) {
           return;
         }
 
-        svgContainer.innerHTML = svgString;
+        markupString = `
+          <style>
+              html, body {
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                font-size: 0;
+              }
+          </style>
+        ` + markupString;
+
+        // Release previous Blob memory block before generating a new one
+        clearBlob();
+        // Create a new Blob out of the HTML string specifying the correct MIME-type and encoding
+        const blob = new Blob([markupString], { type: "text/html; charset=utf-8" });
+        // Generate a short, temporary Blob URL acting as a memory pointer
+        currentBlobUrl = URL.createObjectURL(blob);
+
+        // Point the iframe source to the short Blob URL to safely fetch content directly from the RAM
+        markuplContainer.src = currentBlobUrl;
 
         const regexSettings = /(xlink:href=")(#ANYCOCKPIT|#AGILECOCKPIT|#ARCCALENDAR)(.*?)(")/;
-        let settings = svgString.match(regexSettings);
+        let settings = markupString.match(regexSettings);
         settings = settings && settings[3] ? settings[3] : null;
-        updateSvgSettings(settings);
+        updateBackupSettings(settings);
       }
 
-      async function updateSvgSettings(svgConfig) {
-        if (!svgConfig) {
+      async function updateBackupSettings(acSettings) {
+        if (!acSettings) {
           return;
         }
-        svgSettings.style.display = "block";
-        svgSettings.innerHTML = svgConfig;
-        svgSettings.focus();
-        svgSettings.select();
+        backupSettings.style.display = "block";
+        backupSettings.innerHTML = acSettings;
+        backupSettings.focus();
+        backupSettings.select();
         try {
-          await navigator.clipboard.writeText(svgConfig);
+          await navigator.clipboard.writeText(acSettings);
           showToast("Backup Setting saved to Clipboard", "success", undefined);
         } catch (err) {
           showToast("Unable to copy Backup Settings to Clipboard", "error", undefined);
@@ -612,32 +634,32 @@
       }
 
       // -------------------------------------------------------------
-      // open SVG manually
+      // open Backup manually
       // -------------------------------------------------------------
 
-      const openSvgButton = document.getElementById("open-btn");
-      const openSvgInput = document.getElementById("open-btn-input");
-      openSvgButton.addEventListener('click', () => {
-        openSvgInput.value = '';
-        openSvgInput.click(); 
+      const openBackupButton = document.getElementById("open-btn");
+      const openBackupInput = document.getElementById("open-btn-input");
+      openBackupButton.addEventListener('click', () => {
+        openBackupInput.value = '';
+        openBackupInput.click(); 
       });
 
-      openSvgInput.addEventListener('change', (event) => {
+      openBackupInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
         
-        if (file && file.type === 'image/svg+xml') {
+        if (file && (file.type === 'image/svg+xml' || file.type === 'text/html') ) {
           const reader = new FileReader();
           reader.onload = (e) => {
-            var svgString = e.target.result;
-            if (svgString) {
-              createDecodingView(svgString)
+            var markupString = e.target.result;
+            if (markupString) {
+              createDecodingView(markupString)
             } else {
-              showToast("The selected file could not be read.", "error", undefined);
+              showToast("The selected Backup file could not be read.", "error", undefined);
             }
           };
           reader.readAsText(file);
         } else {
-          showToast("Please select a valid SVG file.", "info", undefined);
+          showToast("Please select a valid Backup file.", "info", undefined);
         }
       });
 

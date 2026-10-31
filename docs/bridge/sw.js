@@ -1,5 +1,5 @@
 // Update version to invalidate cache and trigger PWA update
-const CACHE_NAME = "string-receiver-v5";
+const CACHE_NAME = "string-receiver-v6";
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();
@@ -58,33 +58,33 @@ self.addEventListener("fetch", (event) => {
           const sharedText = formData.get('text') || '';
           const sharedUrl = formData.get('url') || '';
 
-          // Decode SVG Backup File
-          const file = formData.get('shared_svg');
+          // Decode SVG or HTML Backup File
+          const file = formData.get('shared_xml');
 
           
-          if (file && file.type === 'image/svg+xml') {
+          if (file && (file.type === 'image/svg+xml' || file.type === 'text/html')) {
 
             // -------------------------------------------------------------
-            // CASE 1: SVG Backup File
+            // CASE 1: SVG or HTML Backup File via "Open With"
             // -------------------------------------------------------------
 
             // read SVG as text
-            const svgText = await file.text();
+            const xmlText = await file.text();
 
-            // temporarily store image in Cache
-            const cache = await caches.open('shared-svg-cache');
-            await cache.put('/shared.svg', new Response(svgText, {
-              headers: { 'Content-Type': 'image/svg+xml' }
+            // temporarily store markup in Cache
+            const cache = await caches.open('shared-xml-cache');
+            await cache.put('/shared.xml', new Response(xmlText, {
+              headers: { 'Content-Type': 'text/html' }
             }));
             
             // Replaces only the end of the URL to keep /bridge/
-            // #pageSVG?sharedSVG=true
-            const redirectUrl = event.request.url.replace("incoming-share", "?sharedSVG=true#pageSVG");
+            // #pageView?sharedXML=true
+            const redirectUrl = event.request.url.replace("incoming-share", "?sharedXML=true#pageView");
             return Response.redirect(redirectUrl, 303);
           } else {
 
             // -------------------------------------------------------------
-            // CASE 2: Export Download Data URI
+            // CASE 2: Export Download Data URI via "Selected Text Share Feature"
             // -------------------------------------------------------------
             
             // Directly finds the field with the most characters
