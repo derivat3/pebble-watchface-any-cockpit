@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.8 - 2026-11-04
+**Bugfix**
+- Bugfix of not loading initial watchface after reinstall
+
 ## v4.7 - 2026-10-20
 **Bugfix**
 - Bugfix of incomplete dashboard displays
